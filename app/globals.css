@@ -760,10 +760,24 @@ a:hover { color: var(--color-accent); }
   .aero-section-kicker,
   .aero-section-heading { text-align: center; margin-left: auto; margin-right: auto; }
   .aero-quickselect { padding: 48px var(--aero-gutter) 0; }
-  .aero-quickselect-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .aero-quickselect-card { min-height: 116px; padding: 18px 18px; gap: 12px; }
-  .aero-quickselect-label { font-size: 16px; line-height: 21px; }
-  .aero-quickselect-icon { width: 48px; height: 48px; }
+  .aero-quickselect-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .aero-quickselect-card {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 128px;
+    padding: 18px 12px;
+    gap: 10px;
+    border-width: 1.5px;
+  }
+  .aero-quickselect-label {
+    font-size: 14px;
+    line-height: 19px;
+    max-width: none;
+    overflow-wrap: anywhere;
+  }
+  .aero-quickselect-icon { width: 52px; height: 52px; }
   .aero-services-title { width: 100%; }
   .aero-service-card {
     grid-template-columns: 1fr;
@@ -771,4 +785,11 @@ a:hover { color: var(--color-accent); }
   .aero-service-copy { padding: 24px 20px 8px; }
   .aero-service-media { padding: 12px 20px 20px; }
   .aero-service-media-frame { min-height: 0; aspect-ratio: 4 / 3; }
+}
+
+@media (max-width: 360px) {
+  .aero-quickselect-grid { gap: 10px; }
+  .aero-quickselect-card { min-height: 120px; padding: 16px 8px; }
+  .aero-quickselect-label { font-size: 13px; line-height: 18px; }
+  .aero-quickselect-icon { width: 46px; height: 46px; }
 }

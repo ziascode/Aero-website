@@ -49,12 +49,9 @@ export function VideoHero() {
           </p>
           <div className="aero-video-hero-actions">
           <Link href="/contact" className="btn btn-primary" style={{ ...primaryBtn, fontSize: "15px", letterSpacing: "0.06em", padding: "13px 24px" }}>
-            Let’s Talk About Cleaning
+            Book Your Cleaning Service
             <ArrowRight />
           </Link>
-          <Link href="/services" className="btn btn-secondary" style={{ gap: "10px", fontSize: "15px", letterSpacing: "0.06em", textTransform: "uppercase", padding: "13px 24px", color: "#FFFFFF", borderRadius: "25px", borderColor: "color-mix(in srgb, #FFFFFF 55%, transparent)" }}>
-              See how we work with you
-            </Link>
           </div>
         </div>
 
