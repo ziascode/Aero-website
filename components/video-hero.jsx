@@ -23,7 +23,7 @@ export function VideoHero() {
   }, []);
 
   return (
-    <section className="aero-video-hero" aria-label="Commercial cleaning intro">
+    <section id="top" className="aero-video-hero" aria-label="Commercial cleaning intro">
       <video
         ref={videoRef}
         className="aero-video-hero-media"

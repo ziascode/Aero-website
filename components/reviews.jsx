@@ -27,7 +27,7 @@ export function Reviews() {
   const row2 = buildReviews(REVIEWS.slice(half), 3);
 
   return (
-    <section id="reviews-glass" style={{ padding: "24px var(--aero-gutter) 88px", position: "relative", overflow: "hidden", backgroundColor: "#FFFFFF" }}>
+    <section id="reviews" style={{ padding: "24px var(--aero-gutter) 88px", position: "relative", overflow: "hidden", backgroundColor: "#FFFFFF" }}>
       <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "var(--color-accent-2-900)", marginBottom: "12px" }}>Google Reviews</span>
       <hr style={{ height: "1px", border: 0, margin: "0 0 28px", background: "rgba(255,255,255,0.6)" }} />
       <div className="aero-reviews-grid">

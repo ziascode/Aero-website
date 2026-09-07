@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { QUICKSELECT_ITEMS } from "@/lib/data";
+import { onHashLinkClick } from "@/lib/hash-nav";
 
 function OfficeIcon() {
   return (
@@ -92,13 +96,20 @@ const ICONS = {
 };
 
 export function Quickselect() {
+  const pathname = usePathname();
+
   return (
     <section className="aero-quickselect" aria-label="Quick select a service">
       <div className="aero-quickselect-grid">
         {QUICKSELECT_ITEMS.map((item) => {
           const Icon = ICONS[item.icon];
           return (
-            <Link key={item.label} href={item.href} className="aero-quickselect-card">
+            <Link
+              key={item.label}
+              href={item.href}
+              onClick={onHashLinkClick(item.href, pathname)}
+              className="aero-quickselect-card"
+            >
               <span className="aero-quickselect-label">{item.label}</span>
               <span className="aero-quickselect-icon">
                 <Icon />

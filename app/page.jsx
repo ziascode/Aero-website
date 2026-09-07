@@ -1,6 +1,7 @@
 import { About } from "@/components/about";
 import { Contact } from "@/components/contact";
 import { Faq } from "@/components/faq";
+import { HashScroll } from "@/components/hash-scroll";
 import { Hero } from "@/components/hero";
 import { LogoMarquee } from "@/components/logo-marquee";
 import { Quickselect } from "@/components/quickselect";
@@ -13,6 +14,7 @@ import { Wbe } from "@/components/wbe";
 export default function HomePage() {
   return (
     <>
+      <HashScroll />
       <VideoHero />
       {/* <Stats /> */}
       <LogoMarquee />

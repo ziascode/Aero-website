@@ -3,13 +3,36 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { NAV_LINKS } from "@/lib/data";
+import { onHashLinkClick } from "@/lib/hash-nav";
 import { primaryBtn } from "@/lib/styles";
 import { PhoneIcon } from "@/components/icons";
 
 export function SiteNav() {
   const pathname = usePathname();
-  const activeLabel = NAV_LINKS.find((link) => link.href === pathname)?.label;
+  const [hash, setHash] = useState("");
+
+  useEffect(() => {
+    const sync = () => setHash(window.location.hash);
+    sync();
+    window.addEventListener("hashchange", sync);
+    window.addEventListener("popstate", sync);
+    return () => {
+      window.removeEventListener("hashchange", sync);
+      window.removeEventListener("popstate", sync);
+    };
+  }, [pathname]);
+
+  const activeLabel = NAV_LINKS.find((link) => {
+    if (link.href.startsWith("/#")) {
+      const target = link.href.slice(1); // "#services"
+      if (pathname !== "/") return false;
+      if (link.href === "/#top") return !hash || hash === "#top";
+      return hash === target;
+    }
+    return link.href === pathname;
+  })?.label;
 
   return (
     <nav
@@ -22,7 +45,12 @@ export function SiteNav() {
         backgroundColor: "#FFFFFF",
       }}
     >
-      <Link href="/" aria-label="Aero Cleaning Services — home" style={{ display: "flex", alignItems: "center", marginRight: "auto", lineHeight: 1, flex: "0 0 auto" }}>
+      <Link
+        href="/#top"
+        aria-label="Aero Cleaning Services — home"
+        onClick={onHashLinkClick("/#top", pathname)}
+        style={{ display: "flex", alignItems: "center", marginRight: "auto", lineHeight: 1, flex: "0 0 auto" }}
+      >
         <Image
           src="/AeroCleaningServicesLogo.webp"
           alt="Aero Cleaning Services Ltd"
@@ -39,6 +67,12 @@ export function SiteNav() {
             <Link
               key={label}
               href={href}
+              onClick={(event) => {
+                onHashLinkClick(href, pathname)(event);
+                if (href.startsWith("/#") && pathname === "/") {
+                  setHash(href.slice(1));
+                }
+              }}
               className={active ? undefined : "aero-nav-link"}
               style={{ color: active ? "var(--color-accent-700)" : "inherit" }}
             >

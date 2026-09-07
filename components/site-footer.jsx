@@ -1,14 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FOOTER_LINK_GROUPS } from "@/lib/data";
+import { onHashLinkClick } from "@/lib/hash-nav";
 import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 
 export function SiteFooter() {
+  const pathname = usePathname();
+
   return (
     <footer style={{ backgroundColor: "#072445", color: "#FFFFFF" }}>
       <div className="aero-footer-grid">
         <div>
-          <Link href="/" aria-label="Aero Cleaning Services — home" style={{ display: "inline-flex", marginBottom: "20px" }}>
+          <Link
+            href="/#top"
+            aria-label="Aero Cleaning Services — home"
+            onClick={onHashLinkClick("/#top", pathname)}
+            style={{ display: "inline-flex", marginBottom: "20px" }}
+          >
             <span style={{ display: "inline-flex", padding: "12px 16px", borderRadius: "12px", background: "#FFFFFF" }}>
               <Image
                 src="/AeroCleaningServicesLogo.webp"
@@ -29,7 +40,15 @@ export function SiteFooter() {
             <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "color-mix(in srgb, #FFFFFF 55%, transparent)", marginBottom: "18px" }}>{heading}</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "16px" }}>
               {links.map(([label, href]) => (
-                <Link key={label} href={href} className="aero-footer-link" style={{ color: "color-mix(in srgb, #FFFFFF 85%, transparent)" }}>{label}</Link>
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={onHashLinkClick(href, pathname)}
+                  className="aero-footer-link"
+                  style={{ color: "color-mix(in srgb, #FFFFFF 85%, transparent)" }}
+                >
+                  {label}
+                </Link>
               ))}
             </div>
           </div>
