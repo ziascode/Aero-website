@@ -156,6 +156,23 @@ a:hover { color: var(--color-accent); }
   text-transform: uppercase;
   color: color-mix(in srgb, #ffffff 70%, transparent);
 }
+.aero-video-hero-rating dt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.aero-video-hero-rating-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+.aero-video-hero-rating dd {
+  margin-top: 6px;
+}
+
+.aero-video-hero-lede-mobile { display: none; }
+.aero-video-hero-lede-desk { display: block; }
 
 .aero-hero { padding: 72px var(--aero-gutter) 0; }
 .aero-hero-title { font-size: 75px; }
@@ -713,11 +730,55 @@ a:hover { color: var(--color-accent); }
 
 @media (max-width: 768px) {
   .aero-video-hero,
-  .aero-video-hero-inner { min-height: auto; }
-  .aero-video-hero-inner { padding: 28px var(--aero-gutter) 24px; }
-  .aero-video-hero-copy { padding: 36px 0 40px; }
-  .aero-video-hero-copy h1 { font-size: 36px; }
-  .aero-video-hero-stats { grid-template-columns: 1fr 1fr; gap: 18px 16px; }
+  .aero-video-hero-inner { min-height: calc(100svh - 81px); }
+  .aero-video-hero-inner {
+    padding: 32px var(--aero-gutter) 32px;
+    justify-content: space-between;
+    gap: 0;
+  }
+  .aero-video-hero-kicker {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    line-height: 1.45;
+    max-width: 28ch;
+  }
+  .aero-video-hero-copy {
+    padding: 48px 0 36px;
+    max-width: none;
+  }
+  .aero-video-hero-copy h1 {
+    font-size: 40px;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+  }
+  .aero-video-hero-lede-desk { display: none; }
+  .aero-video-hero-lede-mobile {
+    display: block;
+    margin: 16px 0 0;
+    max-width: 34ch;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .aero-video-hero-actions { margin-top: 24px; }
+  .aero-video-hero-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 22px !important;
+  }
+  .aero-video-hero-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+    padding-top: 24px;
+  }
+  .aero-video-hero-stat-extra { display: none; }
+  .aero-video-hero-stats dt { font-size: 28px; }
+  .aero-video-hero-stats dd {
+    margin-top: 6px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+  }
+  .aero-video-hero-rating-logo { width: 26px; height: 26px; }
   .aero-nav-links { display: none; }
   .aero-hero { padding: 40px var(--aero-gutter) 0; }
   .aero-hero-title { font-size: 34px; }

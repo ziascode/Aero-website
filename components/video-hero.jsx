@@ -1,15 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { primaryBtn } from "@/lib/styles";
 import { ArrowRight } from "@/components/icons";
 
 const STATS = [
-  ["2015", "Founded in Guelph, Ontario"],
-  ["8+", "Industries we clean for"],
-  ["100%", "Locally owned & insured"],
-  ["Giving back", "On every contract signed"],
+  { value: "2015", label: "Founded in Guelph, Ontario" },
+  { type: "google" },
+  { value: "100%", label: "Locally owned & insured", mobileHidden: true },
+  { value: "Giving back", label: "On every contract signed", mobileHidden: true },
 ];
 
 export function VideoHero() {
@@ -40,28 +41,41 @@ export function VideoHero() {
       <div className="aero-video-hero-overlay" />
 
       <div className="aero-video-hero-inner">
-        <p className="aero-video-hero-kicker">Guelph, Kitchener, Waterloo &amp; Cambridge · Since 2015</p>
+        <p className="aero-video-hero-kicker">Guelph, Kitchener, Waterloo &amp; Cambridge</p>
 
         <div className="aero-video-hero-copy">
           <h1>Commercial Cleaning Services</h1>
-          <p>
+          <p className="aero-video-hero-lede-desk">
             Office cleaning, post-construction cleanup and janitorial services are our specialties: detail-focused commercial cleaning for the Guelph, Kitchener, Waterloo and Cambridge area.
           </p>
+          <p className="aero-video-hero-lede-mobile">
+            Office cleaning, post-construction cleanup and janitorial services for businesses across the region.
+          </p>
           <div className="aero-video-hero-actions">
-          <Link href="/contact" className="btn btn-primary" style={{ ...primaryBtn, fontSize: "15px", letterSpacing: "0.06em", padding: "13px 24px" }}>
-            Book Your Cleaning Service
-            <ArrowRight />
-          </Link>
+            <Link href="/contact" className="btn btn-primary aero-video-hero-cta" style={{ ...primaryBtn, fontSize: "15px", letterSpacing: "0.06em", padding: "13px 24px" }}>
+              Book Your Cleaning Service
+              <ArrowRight />
+            </Link>
           </div>
         </div>
 
         <dl className="aero-video-hero-stats">
-          {STATS.map(([value, label]) => (
-            <div key={label}>
-              <dt>{value}</dt>
-              <dd>{label}</dd>
-            </div>
-          ))}
+          {STATS.map((stat) =>
+            stat.type === "google" ? (
+              <div key="google-rating" className="aero-video-hero-rating">
+                <dt>
+                  <Image src="/google.png" alt="" width={28} height={28} className="aero-video-hero-rating-logo" />
+                  <span>5.0</span>
+                </dt>
+                <dd>Rated on Google Reviews</dd>
+              </div>
+            ) : (
+              <div key={stat.label} className={stat.mobileHidden ? "aero-video-hero-stat-extra" : undefined}>
+                <dt>{stat.value}</dt>
+                <dd>{stat.label}</dd>
+              </div>
+            )
+          )}
         </dl>
       </div>
     </section>
