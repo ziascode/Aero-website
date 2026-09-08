@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { onHashLinkClick } from "@/lib/hash-nav";
 import { primaryBtn } from "@/lib/styles";
 import { ArrowRight } from "@/components/icons";
 
@@ -15,6 +17,7 @@ const STATS = [
 
 export function VideoHero() {
   const videoRef = useRef(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const video = videoRef.current;
@@ -52,7 +55,12 @@ export function VideoHero() {
             Office cleaning, post-construction cleanup and janitorial services for businesses across the region.
           </p>
           <div className="aero-video-hero-actions">
-            <Link href="/contact" className="btn btn-primary aero-video-hero-cta" style={{ ...primaryBtn, fontSize: "15px", letterSpacing: "0.06em", padding: "13px 24px" }}>
+            <Link
+              href="/#contact"
+              onClick={onHashLinkClick("/#contact", pathname)}
+              className="btn btn-primary aero-video-hero-cta"
+              style={{ ...primaryBtn, fontSize: "15px", letterSpacing: "0.06em", padding: "13px 24px" }}
+            >
               Book Your Cleaning Service
               <ArrowRight />
             </Link>

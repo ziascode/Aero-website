@@ -6,9 +6,12 @@ import { SERVICE_ROWS } from "@/lib/data";
 import { headingBase, primaryBtn, sectionHeading, tagStyle } from "@/lib/styles";
 import { ArrowUpRight, ChevronDown } from "@/components/icons";
 import { useIsMobile } from "@/hooks/use-is-mobile";
+import { onHashLinkClick } from "@/lib/hash-nav";
+import { usePathname } from "next/navigation";
 
 export function Services() {
   const isMobile = useIsMobile();
+  const pathname = usePathname();
   const [openService, setOpenService] = useState(0);
   const [activeDeskRow, setActiveDeskRow] = useState(0);
   const cardRefs = useRef([]);
@@ -158,7 +161,12 @@ export function Services() {
                     <li key={t} className="tag tag-outline" style={tagStyle}>{t}</li>
                   ))}
                 </ul>
-                <Link href="/contact" className="btn btn-primary" style={{ ...primaryBtn, width: "40%", padding: "16px 24px", alignSelf: "flex-start" }}>
+                <Link
+                  href="/#contact"
+                  onClick={onHashLinkClick("/#contact", pathname)}
+                  className="btn btn-primary"
+                  style={{ ...primaryBtn, width: "40%", padding: "16px 24px", alignSelf: "flex-start" }}
+                >
                   Book service
                   <ArrowUpRight />
                 </Link>
@@ -212,7 +220,12 @@ export function Services() {
                         ))}
                       </ul>
                       <div style={{ marginBottom: "16px" }}>
-                        <Link href="/contact" className="btn btn-primary" style={{ ...primaryBtn, gap: "8px" }}>
+                        <Link
+                          href="/#contact"
+                          onClick={onHashLinkClick("/#contact", pathname)}
+                          className="btn btn-primary"
+                          style={{ ...primaryBtn, gap: "8px" }}
+                        >
                           Book service
                           <ArrowUpRight size={13} />
                         </Link>

@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AVATAR_COLORS, REVIEWS } from "@/lib/data";
+import { onHashLinkClick } from "@/lib/hash-nav";
 import { primaryBtn, sectionHeading } from "@/lib/styles";
 import { ArrowRight } from "@/components/icons";
 import { ReviewCard } from "@/components/review-card";
@@ -22,6 +26,7 @@ const maskStyle = {
 };
 
 export function Reviews() {
+  const pathname = usePathname();
   const half = Math.ceil(REVIEWS.length / 2);
   const row1 = buildReviews(REVIEWS.slice(0, half), 0);
   const row2 = buildReviews(REVIEWS.slice(half), 3);
@@ -42,7 +47,12 @@ export function Reviews() {
           <span style={{ display: "block", marginTop: "24px", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }}>
             240+ Google reviews · 5.0 average · 318 contract sites
           </span>
-          <Link href="/contact" className="btn btn-primary" style={{ ...primaryBtn, marginTop: "20px" }}>
+          <Link
+            href="/#contact"
+            onClick={onHashLinkClick("/#contact", pathname)}
+            className="btn btn-primary"
+            style={{ ...primaryBtn, marginTop: "20px" }}
+          >
             Book service
             <ArrowRight size={14} />
           </Link>

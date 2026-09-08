@@ -23,10 +23,9 @@ export default function HomePage() {
       <Services />
       <Reviews />
       <About />
-      
-      {/* <Contact /> */}
       <Wbe />
       <Faq />
+      <Contact />
     </>
   );
 }

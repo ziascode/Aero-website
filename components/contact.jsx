@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { sectionHeading } from "@/lib/styles";
 import { ArrowRight, PhoneIcon } from "@/components/icons";
 
@@ -17,10 +16,10 @@ export function Contact() {
           </p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start" }}>
-          <Link href="/contact" className="btn" style={{ width: "100%", justifyContent: "center", gap: "10px", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", padding: "12px 25px", background: "var(--color-bg)", color: "var(--color-accent-900)", borderColor: "var(--color-bg)" }}>
+          <a href="tel:14105550142" className="btn" style={{ width: "100%", justifyContent: "center", gap: "10px", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", padding: "12px 25px", background: "var(--color-bg)", color: "var(--color-accent-900)", borderColor: "var(--color-bg)" }}>
             Book service
             <ArrowRight />
-          </Link>
+          </a>
           <a href="tel:14105550142" className="btn" style={{ width: "100%", justifyContent: "center", gap: "10px", fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", padding: "12px 25px", background: "transparent", color: "var(--color-bg)", borderColor: "color-mix(in srgb, #f2f2f3 45%, transparent)" }}>
             <PhoneIcon />
             Call now
