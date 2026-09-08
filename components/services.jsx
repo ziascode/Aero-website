@@ -48,7 +48,7 @@ export function Services() {
 
   useEffect(() => {
     const DWELL_MS = 350;
-    const BAND_RATIO = 0.4; // ±40% of viewport height from center (middle 80%)
+    const BAND_RATIO = 0.45; // ±45% of viewport height from center (middle 90%)
 
     const clearDwell = () => {
       if (dwellTimer.current) {

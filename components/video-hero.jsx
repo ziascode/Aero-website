@@ -48,6 +48,7 @@ export function VideoHero() {
 
         <div className="aero-video-hero-copy">
           <h1>Commercial Cleaning Services</h1>
+          <p className="aero-video-hero-slogan">A team you can rely on</p>
           <p className="aero-video-hero-lede-desk">
             Office cleaning, post-construction cleanup and janitorial services are our specialties: detail-focused commercial cleaning for the Guelph, Kitchener, Waterloo and Cambridge area.
           </p>

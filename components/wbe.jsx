@@ -10,7 +10,7 @@ const POINTS = [
 
 export function Wbe() {
   return (
-    <section className="aero-wbe" aria-labelledby="wbe-heading">
+    <section id="wbe" className="aero-wbe" aria-labelledby="wbe-heading">
       <div className="aero-wbe-grid">
         <figure className="aero-wbe-badge">
           <Image

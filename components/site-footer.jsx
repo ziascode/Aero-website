@@ -33,6 +33,25 @@ export function SiteFooter() {
           <p style={{ fontSize: "16px", lineHeight: "24px", maxWidth: "32ch", margin: 0, color: "color-mix(in srgb, #FFFFFF 68%, transparent)" }}>
             Commercial janitorial &amp; industrial hygiene for offices, warehouses and production floors.
           </p>
+          <Link
+            href="/#wbe"
+            onClick={onHashLinkClick("/#wbe", pathname)}
+            className="aero-footer-wbe"
+            aria-label="WBE Canada certified diverse supplier"
+          >
+            <span className="aero-footer-wbe-plate">
+              <Image
+                src="/wbe-brand.png"
+                alt="WBE Canada certified — Canadian Women Brand"
+                width={120}
+                height={120}
+              />
+            </span>
+            <span className="aero-footer-wbe-copy">
+              <span className="aero-footer-wbe-kicker">Certified Diverse Supplier</span>
+              <span className="aero-footer-wbe-label">WBE Canada</span>
+            </span>
+          </Link>
         </div>
 
         {FOOTER_LINK_GROUPS.map(([heading, links]) => (

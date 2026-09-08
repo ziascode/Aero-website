@@ -17,6 +17,7 @@ export function About() {
 
         <div className="aero-about-copy">
           <span className="aero-about-kicker">About Aero</span>
+          <p className="aero-about-slogan">A team you can rely on</p>
           <h2>Cleaning Guelph and the surrounding area since 2015.</h2>
           <p>
             Roxana founded Aero Cleaning Services Ltd. out of her home in Guelph in 2015. Driven by the support she received upon moving to Canada in 1997 as a refugee, she’s passionate about giving back to her community — a portion of proceeds from every contract signed is donated to an organization chosen by our clients.
