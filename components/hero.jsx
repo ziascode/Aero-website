@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { HERO_IMAGES, LABELS } from "@/lib/data";
-import { headingBase, primaryBtn } from "@/lib/styles";
+import { headingBase } from "@/lib/styles";
+import { LiquidButton } from "@/components/liquid-button";
 import { ArrowRight, PhoneIcon, SprayIcon, Stars } from "@/components/icons";
 
 export function Hero() {
@@ -50,14 +50,12 @@ export function Hero() {
         </h1>
 
         <div style={{ display: "flex", justifyContent: "center", gap: "12px", flexWrap: "wrap", marginTop: "30px" }}>
-          <Link href="/contact" className="btn btn-primary" style={{ ...primaryBtn, fontSize: "15px", padding: "13px 24px" }}>
+          <LiquidButton href="/contact" icon={<ArrowRight />}>
             Book service
-            <ArrowRight />
-          </Link>
-          <Link href="/contact" className="btn btn-secondary" style={{ gap: "10px", fontSize: "15px", letterSpacing: "0.06em", textTransform: "uppercase", padding: "13px 24px", color: "var(--color-text)", borderRadius: "25px" }}>
-            <PhoneIcon />
+          </LiquidButton>
+          <LiquidButton href="/contact" variant="outline" icon={<PhoneIcon />}>
             Call now
-          </Link>
+          </LiquidButton>
         </div>
 
         <div className="aero-hero-tabs">

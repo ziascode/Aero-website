@@ -1,18 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { FAQ_ITEMS } from "@/lib/data";
-import { primaryBtn, sectionHeading } from "@/lib/styles";
-import { ArrowRight } from "@/components/icons";
+import { sectionHeading } from "@/lib/styles";
 
-export function Faq() {
+export function Faq({ hideKicker = false, items, phoneId } = {}) {
   const [openItem, setOpenItem] = useState(0);
+  const faqItems = items || FAQ_ITEMS;
 
   return (
     <section id="faq" className="aero-faq" aria-labelledby="faq-heading">
-      <span className="aero-faq-kicker">Frequently Asked Questions</span>
+      {hideKicker ? null : (
+        <span className="aero-faq-kicker">Frequently Asked Questions</span>
+      )}
 
       <div className="aero-faq-grid">
         <div className="aero-faq-intro">
@@ -20,9 +21,15 @@ export function Faq() {
             <span style={{ display: "block" }}>Have questions?</span>
           </h2>
           <p className="aero-faq-lede">
-            We've answered the questions that come up on almost every walkthrough — scheduling, insurance, supplies and scope. If yours isn’t here, a supervisor will answer it on a call.
+            We&apos;ve answered the questions that come up on almost every walkthrough: scheduling, insurance, supplies and scope. If yours isn&apos;t here, a supervisor will answer it on a call.
           </p>
-          <span className="aero-faq-meta"> (410) 555-0142</span>
+          <a
+            className={`aero-faq-meta${phoneId ? " aero-lp-track-tel" : ""}`}
+            id={phoneId}
+            href="tel:14105550142"
+          >
+            (410) 555-0142
+          </a>
 
           <figure className="aero-faq-photo">
             <div>
@@ -38,7 +45,7 @@ export function Faq() {
         </div>
 
         <ul className="aero-faq-list">
-          {FAQ_ITEMS.map((item, i) => {
+          {faqItems.map((item, i) => {
             const open = openItem === i;
             return (
               <li key={item.q} className={`aero-faq-item${open ? " is-open" : ""}`}>

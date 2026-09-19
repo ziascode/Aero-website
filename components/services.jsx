@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { SERVICE_ROWS } from "@/lib/data";
-import { headingBase, primaryBtn, sectionHeading, tagStyle } from "@/lib/styles";
+import { headingBase, sectionHeading, tagStyle } from "@/lib/styles";
+import { LiquidButton } from "@/components/liquid-button";
 import { ArrowUpRight, ChevronDown } from "@/components/icons";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { onHashLinkClick } from "@/lib/hash-nav";
@@ -161,15 +161,14 @@ export function Services() {
                     <li key={t} className="tag tag-outline" style={tagStyle}>{t}</li>
                   ))}
                 </ul>
-                <Link
+                <LiquidButton
                   href="/#contact"
                   onClick={onHashLinkClick("/#contact", pathname)}
-                  className="btn btn-primary"
-                  style={{ ...primaryBtn, width: "40%", padding: "16px 24px", alignSelf: "flex-start" }}
+                  icon={<ArrowUpRight />}
+                  style={{ width: "40%", alignSelf: "flex-start" }}
                 >
                   Book service
-                  <ArrowUpRight />
-                </Link>
+                </LiquidButton>
               </div>
               <div className="aero-service-media">
                 <div className="aero-service-media-frame">
@@ -220,15 +219,13 @@ export function Services() {
                         ))}
                       </ul>
                       <div style={{ marginBottom: "16px" }}>
-                        <Link
+                        <LiquidButton
                           href="/#contact"
                           onClick={onHashLinkClick("/#contact", pathname)}
-                          className="btn btn-primary"
-                          style={{ ...primaryBtn, gap: "8px" }}
+                          icon={<ArrowUpRight size={13} />}
                         >
                           Book service
-                          <ArrowUpRight size={13} />
-                        </Link>
+                        </LiquidButton>
                       </div>
                       <div className="aero-service-media" style={{ padding: 0 }}>
                         <div className="aero-service-media-frame">

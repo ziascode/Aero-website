@@ -11,5 +11,14 @@ const nextConfig = {
       { protocol: "https", hostname: "images.pexels.com" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/lp/janitorial-services",
+        destination: "/services/janitorial-services",
+        permanent: true,
+      },
+    ];
+  },
 };
 export default nextConfig;

@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { onHashLinkClick } from "@/lib/hash-nav";
-import { primaryBtn } from "@/lib/styles";
+import { LiquidButton } from "@/components/liquid-button";
 import { ArrowRight } from "@/components/icons";
 
 const STATS = [
@@ -56,15 +55,14 @@ export function VideoHero() {
             Office cleaning, post-construction cleanup and janitorial services for businesses across the region.
           </p>
           <div className="aero-video-hero-actions">
-            <Link
+            <LiquidButton
               href="/#contact"
               onClick={onHashLinkClick("/#contact", pathname)}
-              className="btn btn-primary aero-video-hero-cta"
-              style={{ ...primaryBtn, fontSize: "15px", letterSpacing: "0.06em", padding: "13px 24px" }}
+              className="aero-video-hero-cta"
+              icon={<ArrowRight />}
             >
               Book Your Cleaning Service
-              <ArrowRight />
-            </Link>
+            </LiquidButton>
           </div>
         </div>
 

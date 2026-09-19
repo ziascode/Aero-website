@@ -1,6 +1,6 @@
 # Aero Cleaning Services — Next.js
 
-Homepage converted from the design export into a Next.js App Router project.
+ Next.js App Router project.
 
 ## Run locally (VS Code)
 
