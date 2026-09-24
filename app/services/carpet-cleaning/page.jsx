@@ -4,9 +4,9 @@ import { SERVICE_PAGES } from "@/lib/data";
 const page = SERVICE_PAGES["carpet-cleaning"];
 
 export const metadata = {
-  title: "Carpet Cleaning - Aero Cleaning Services",
+  title: "Commercial Carpet Cleaning Guelph | Aero Cleaning",
   description:
-    "Commercial carpet cleaning for Guelph, Kitchener, Waterloo and Cambridge. Hot-water extraction, traffic-lane care, and low dry time for next-day occupancy.",
+    "Commercial carpet cleaning across Guelph, Kitchener, Waterloo and Cambridge. Hot-water extraction, traffic-lane cleaning and low dry times.",
 };
 
 export default function CarpetCleaningPage() {

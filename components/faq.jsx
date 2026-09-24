@@ -21,7 +21,7 @@ export function Faq({ hideKicker = false, items, phoneId } = {}) {
             <span style={{ display: "block" }}>Have questions?</span>
           </h2>
           <p className="aero-faq-lede">
-            We&apos;ve answered the questions that come up on almost every walkthrough: scheduling, insurance, supplies and scope. If yours isn&apos;t here, a supervisor will answer it on a call.
+            The questions that come up on almost every walkthrough. If yours is not here, a supervisor will answer it on the call.
           </p>
           <a
             className={`aero-faq-meta${phoneId ? " aero-lp-track-tel" : ""}`}

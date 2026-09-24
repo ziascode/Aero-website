@@ -110,7 +110,7 @@ export function ServiceLeadForm({ page, source, trackingPrefix = "service" }) {
                 />
               </label>
               <label htmlFor={`svc-notes-${uid}`}>
-                Rough size or # of restrooms <span>(optional)</span>
+                Rough size or number of washrooms (optional)
                 <input id={`svc-notes-${uid}`} name="notes" type="text" />
               </label>
               {state.message ? (

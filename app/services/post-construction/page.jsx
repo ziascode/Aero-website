@@ -4,9 +4,9 @@ import { SERVICE_PAGES } from "@/lib/data";
 const page = SERVICE_PAGES["post-construction"];
 
 export const metadata = {
-  title: "Post Construction Cleaning - Aero Cleaning Services",
+  title: "Post-Construction Cleaning Guelph | Builders' Clean",
   description:
-    "Builders’ cleans for Guelph, Kitchener, Waterloo and Cambridge. Dust, glass, adhesive removal and final floors ahead of handover. Fixed project quote in two working days.",
+    "Post-construction and builders' cleans across Guelph, Kitchener, Waterloo and Cambridge. Rough, intermediate and final phases, ready for handover.",
 };
 
 export default function PostConstructionPage() {

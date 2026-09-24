@@ -31,7 +31,7 @@ export function SiteFooter() {
             </span>
           </Link>
           <p style={{ fontSize: "16px", lineHeight: "24px", maxWidth: "32ch", margin: 0, color: "color-mix(in srgb, #FFFFFF 68%, transparent)" }}>
-            Commercial janitorial &amp; industrial hygiene for offices, warehouses and production floors.
+            Commercial cleaning, janitorial and window care for offices, plants and warehouses.
           </p>
           <Link
             href="/#wbe"
@@ -48,8 +48,7 @@ export function SiteFooter() {
               />
             </span>
             <span className="aero-footer-wbe-copy">
-              <span className="aero-footer-wbe-kicker">Certified Diverse Supplier</span>
-              <span className="aero-footer-wbe-label">WBE Canada</span>
+              <span className="aero-footer-wbe-label">WBE Canada certified — women-owned diverse supplier</span>
             </span>
           </Link>
         </div>
@@ -80,9 +79,9 @@ export function SiteFooter() {
               <PhoneIcon />
               (410) 555-0142
             </a>
-            <a href="mailto:hello@aerocleaning.ca" className="aero-footer-link" style={{ display: "flex", alignItems: "center", gap: "10px", color: "inherit" }}>
+            <a href="mailto:info@aerocleaning.ca" className="aero-footer-link" style={{ display: "flex", alignItems: "center", gap: "10px", color: "inherit" }}>
               <MailIcon />
-              hello@aerocleaning.ca
+              info@aerocleaning.ca
             </a>
             <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <PinIcon />
@@ -92,7 +91,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="aero-footer-legal">
-        <span style={{ marginRight: "auto" }}>© 2026 Aero Cleaning Services. All rights reserved.</span>
+        <span style={{ marginRight: "auto" }}>© 2026 Aero Cleaning Services Ltd. All rights reserved.</span>
         <span>Insured &amp; DBS vetted</span>
         <span>ISO 9001 &amp; 14001</span>
       </div>

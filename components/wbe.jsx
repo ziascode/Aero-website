@@ -3,9 +3,9 @@ import { sectionHeading } from "@/lib/styles";
 import { VerifiedIcon } from "@/components/icons";
 
 const POINTS = [
-  "Founded and led by Roxana in Guelph since 2015",
-  "Certification paperwork ready for your procurement team and RFPs",
-  "Spend with Aero counts toward your supplier-diversity targets",
+  "Founded and led by Roxana Di Caro, in Guelph since 2015",
+  "Certification documents ready for procurement and RFPs",
+  "Spend with Aero counts toward supplier-diversity targets",
 ];
 
 export function Wbe() {
@@ -22,12 +22,12 @@ export function Wbe() {
         </figure>
 
         <div className="aero-wbe-copy">
-          <span className="aero-wbe-kicker">Certified Diverse Supplier</span>
+          <span className="aero-wbe-kicker">Certified diverse supplier</span>
           <h2 id="wbe-heading" style={{ ...sectionHeading, margin: "12px 0 0", maxWidth: "24ch" }}>
-            A <span style={{ color: "#0E7EFF" }}>women-owned</span> business, certified by WBE Canada
+            Women-owned, certified by WBE Canada
           </h2>
           <p>
-            Aero is proud to be a <strong>women-owned, WBE Canada–certified</strong> business. Choose Aero Cleaning Services as you look to build diversity within your supply chain.
+            Aero is certified by Women Business Enterprise Canada. If your organisation reports on supplier diversity, spend with Aero counts toward it, and the certification paperwork is ready to attach to an RFP without anyone chasing it.
           </p>
           <ul className="aero-wbe-points">
             {POINTS.map((point) => (

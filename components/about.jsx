@@ -1,7 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ABOUT_CREDENTIALS, ABOUT_GIVEBACK } from "@/lib/data";
 
-export function About() {
+export function About({ hideMoreLink = false } = {}) {
   return (
     <section id="about" className="aero-about">
       <div className="aero-about-top">
@@ -17,11 +18,11 @@ export function About() {
 
         <div className="aero-about-copy">
           <span className="aero-about-kicker">About Aero</span>
-          <p className="aero-about-slogan">A team you can rely on</p>
-          <h2>Cleaning Guelph and the surrounding area since 2015.</h2>
+          <h2>Cleaning Guelph and the surrounding area since 2015</h2>
           <p>
-            Roxana founded Aero Cleaning Services Ltd. out of her home in Guelph in 2015. Driven by the support she received upon moving to Canada in 1997 as a refugee, she’s passionate about giving back to her community — a portion of proceeds from every contract signed is donated to an organization chosen by our clients.
+            Roxana Di Caro came to Canada in 1997, a young refugee from Romania. She started Aero in 2015 by knocking on doors around Guelph and asking businesses what they needed. The company has grown well past that, but the approach has not changed much: someone comes out, looks at the building and works out what it takes.
           </p>
+          {hideMoreLink ? null : <Link href="/about">More about Aero</Link>}
           <dl className="aero-about-creds">
             {ABOUT_CREDENTIALS.map((item) => (
               <div key={item.title} className="aero-about-cred">

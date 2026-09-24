@@ -68,14 +68,13 @@ export function Reviews({ ctaHref = "/#contact", bandsOnly = false } = {}) {
       <div className="aero-reviews-grid">
         <div style={{ borderRadius: "25px", padding: "10px 0", backgroundColor: "#FFFFFF" }}>
           <h2 style={{ ...sectionHeading, margin: 0, maxWidth: "22ch", color: "var(--color-text)" }}>
-            <span style={{ display: "block" }}>Rated <span style={{ color: "rgb(14, 126, 255)" }}>5.0</span> by the</span>
-            <span style={{ display: "block" }}>facilities teams we clean for</span>
+            Rated 5.0 by the people who manage the buildings
           </h2>
           <p style={{ maxWidth: "46ch", margin: "20px 0 0", fontSize: "16px", lineHeight: "24px", color: "color-mix(in srgb, var(--color-text) 78%, transparent)" }}>
             Every review below comes from a live Google listing — offices, depots and production sites across the region, scored after the first quarter of service.
           </p>
           <span style={{ display: "block", marginTop: "24px", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }}>
-            240+ Google reviews · 5.0 average · 318 contract sites
+            5.0 average across 32 Google reviews
           </span>
           <LiquidButton
             href={ctaHref}

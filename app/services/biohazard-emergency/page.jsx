@@ -4,9 +4,9 @@ import { SERVICE_PAGES } from "@/lib/data";
 const page = SERVICE_PAGES["biohazard-emergency"];
 
 export const metadata = {
-  title: "Biohazard & Emergency Cleaning - Aero Cleaning Services",
+  title: "Emergency Cleaning & Restoration Guelph | Aero",
   description:
-    "Rapid biohazard and emergency cleaning for Guelph, Kitchener, Waterloo and Cambridge. Water, fire, sewage and biohazard response with full PPE and insurance documentation.",
+    "Emergency cleanup across Guelph, Kitchener, Waterloo and Cambridge. Water, flood, sewer backup and biohazard response, documented for insurers.",
 };
 
 export default function BiohazardEmergencyPage() {

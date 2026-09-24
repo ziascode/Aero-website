@@ -136,13 +136,13 @@ export function Services() {
     <section id="services" ref={rootRef} style={{ padding: "88px var(--aero-gutter) 24px", backgroundColor: "#FFFFFF" }}>
      
       <hr style={{ height: "1px", border: 0, margin: "0 0 28px", background: "var(--color-divider)" }} />
+      <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "var(--color-accent-2-900)", marginBottom: "12px" }}>What we do</span>
       <h2 className="aero-section-heading" style={{ ...sectionHeading, margin: 0, maxWidth: "26ch" }}>
-        <span className="aero-services-title">
-          Complete&nbsp;<span style={{ color: "rgb(14, 126, 255)" }}>cleaning</span>&nbsp;
-          <br />
-          Services
-        </span>
+        Services
       </h2>
+      <p style={{ maxWidth: "46ch", margin: "16px 0 0", fontSize: "16px", lineHeight: "24px" }}>
+        Six core services, plus whatever else the building needs.
+      </p>
 
       {!isMobile && (
         <div className="aero-service-list" onMouseLeave={() => { hoveringDesk.current = false; }}>
@@ -222,7 +222,7 @@ export function Services() {
                         <LiquidButton
                           href="/#contact"
                           onClick={onHashLinkClick("/#contact", pathname)}
-                          icon={<ArrowUpRight size={13} />}
+                          icon={<ArrowUpRight />}
                         >
                           Book service
                         </LiquidButton>

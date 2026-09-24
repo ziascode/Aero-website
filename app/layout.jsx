@@ -24,9 +24,9 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Aero Cleaning Services - Commercial & Office Cleaning",
+  title: "Commercial Cleaning Guelph | Aero Cleaning Services",
   description:
-    "Nightly janitorial, industrial floor care and commercial cleaning for offices, plants and warehouses.",
+    "Office, janitorial and post-construction cleaning across Guelph, Kitchener, Waterloo and Cambridge. Women-owned and WBE certified, cleaning since 2015.",
 };
 
 export const viewport = {
