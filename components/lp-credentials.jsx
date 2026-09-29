@@ -3,7 +3,7 @@ import { ABOUT_CREDENTIALS } from "@/lib/data";
 
 export function LpCredentials() {
   return (
-    <section className="aero-lp-credentials" aria-label="Credentials and certifications">
+    <section className="aero-lp-credentials" data-sticky-reveal aria-label="Credentials and certifications">
       <ul className="aero-lp-credentials-list">
         {ABOUT_CREDENTIALS.map((item) => (
           <li key={item.title} className="aero-lp-credentials-item">
@@ -12,7 +12,7 @@ export function LpCredentials() {
               alt=""
               width={item.rounded ? 48 : 72}
               height={48}
-              className={["aero-lp-credentials-logo", item.rounded ? "is-rounded" : ""].filter(Boolean).join(" ")}
+              className={["aero-lp-credentials-logo", item.rounded ? "is-rounded" : "", item.title === "BBB" ? "is-on-light" : ""].filter(Boolean).join(" ")}
             />
             <div>
               <span className="aero-lp-credentials-title">{item.title}</span>

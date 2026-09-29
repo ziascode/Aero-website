@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { LiquidButton } from "@/components/liquid-button";
 import { ArrowRight, PhoneIcon, Stars } from "@/components/icons";
+import { PHONE_TEL } from "@/lib/contact";
 
 export function ServiceHero({ page, children, trackingPrefix = "service" }) {
   function scrollToContact(event) {
@@ -49,7 +50,7 @@ export function ServiceHero({ page, children, trackingPrefix = "service" }) {
               </LiquidButton>
               <LiquidButton
                 id={telId}
-                href="tel:14105550142"
+                href={PHONE_TEL}
                 variant="ghost"
                 icon={<PhoneIcon />}
                 className="aero-lp-track-tel"

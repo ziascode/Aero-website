@@ -61,8 +61,23 @@ export function Reviews({ ctaHref = "/#contact", bandsOnly = false } = {}) {
     );
   }
 
+  function onBook(event) {
+    if (isInPageHash) {
+      event.preventDefault();
+      document.getElementById(ctaHref.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    onHashLinkClick(ctaHref, pathname)(event);
+  }
+
+  const isHome = pathname === "/";
+
   return (
-    <section id="reviews" style={{ padding: "24px var(--aero-gutter) 88px", position: "relative", overflow: "hidden", backgroundColor: "#FFFFFF" }}>
+    <section
+      id="reviews"
+      className={isHome ? "aero-reviews-home aero-reviews-section" : "aero-reviews-section"}
+      style={{ position: "relative", overflow: "hidden", backgroundColor: "#FFFFFF" }}
+    >
       <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "var(--color-accent-2-900)", marginBottom: "12px" }}>Google Reviews</span>
       <hr style={{ height: "1px", border: 0, margin: "0 0 28px", background: "rgba(255,255,255,0.6)" }} />
       <div className="aero-reviews-grid">
@@ -70,22 +85,16 @@ export function Reviews({ ctaHref = "/#contact", bandsOnly = false } = {}) {
           <h2 style={{ ...sectionHeading, margin: 0, maxWidth: "22ch", color: "var(--color-text)" }}>
             Rated 5.0 by the people who manage the buildings
           </h2>
-          <p style={{ maxWidth: "46ch", margin: "20px 0 0", fontSize: "16px", lineHeight: "24px", color: "color-mix(in srgb, var(--color-text) 78%, transparent)" }}>
+          <p className="aero-reviews-dek" style={{ maxWidth: "46ch", margin: "20px 0 0", fontSize: "16px", lineHeight: "24px", color: "color-mix(in srgb, var(--color-text) 78%, transparent)" }}>
             Every review below comes from a live Google listing — offices, depots and production sites across the region, scored after the first quarter of service.
           </p>
           <span style={{ display: "block", marginTop: "24px", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }}>
-            5.0 average across 32 Google reviews
+            5.0 average across 31 Google reviews
           </span>
           <LiquidButton
             href={ctaHref}
-            onClick={(event) => {
-              if (isInPageHash) {
-                event.preventDefault();
-                document.getElementById(ctaHref.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
-                return;
-              }
-              onHashLinkClick(ctaHref, pathname)(event);
-            }}
+            className="aero-reviews-cta-lead"
+            onClick={onBook}
             icon={<ArrowRight size={14} />}
             style={{ marginTop: "20px" }}
           >
@@ -100,6 +109,13 @@ export function Reviews({ ctaHref = "/#contact", bandsOnly = false } = {}) {
       </div>
 
       <ReviewBands row1={row1} row2={row2} />
+      {isHome ? (
+        <div className="aero-reviews-cta-after">
+          <LiquidButton href={ctaHref} onClick={onBook} icon={<ArrowRight size={14} />}>
+            Book service
+          </LiquidButton>
+        </div>
+      ) : null}
     </section>
   );
 }

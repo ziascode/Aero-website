@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FOOTER_LINK_GROUPS } from "@/lib/data";
+import { EMAIL, EMAIL_MAILTO, LOCATION, PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 import { onHashLinkClick } from "@/lib/hash-nav";
 import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 
@@ -75,17 +76,17 @@ export function SiteFooter() {
         <div>
           <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "color-mix(in srgb, #FFFFFF 55%, transparent)", marginBottom: "18px" }}>Get in touch</span>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "16px", color: "color-mix(in srgb, #FFFFFF 85%, transparent)" }}>
-            <a href="tel:14105550142" className="aero-footer-link" style={{ display: "flex", alignItems: "center", gap: "10px", color: "inherit" }}>
+            <a href={PHONE_TEL} className="aero-footer-link" style={{ display: "flex", alignItems: "center", gap: "10px", color: "inherit" }}>
               <PhoneIcon />
-              (410) 555-0142
+              {PHONE_DISPLAY}
             </a>
-            <a href="mailto:info@aerocleaning.ca" className="aero-footer-link" style={{ display: "flex", alignItems: "center", gap: "10px", color: "inherit" }}>
+            <a href={EMAIL_MAILTO} className="aero-footer-link" style={{ display: "flex", alignItems: "center", gap: "10px", color: "inherit" }}>
               <MailIcon />
-              info@aerocleaning.ca
+              {EMAIL}
             </a>
             <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <PinIcon />
-              Serving the Greater Toronto Area
+              {LOCATION}
             </span>
           </div>
         </div>

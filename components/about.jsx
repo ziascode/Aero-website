@@ -23,7 +23,7 @@ export function About({ hideMoreLink = false } = {}) {
             Roxana Di Caro came to Canada in 1997, a young refugee from Romania. She started Aero in 2015 by knocking on doors around Guelph and asking businesses what they needed. The company has grown well past that, but the approach has not changed much: someone comes out, looks at the building and works out what it takes.
           </p>
           {hideMoreLink ? null : <Link href="/about">More about Aero</Link>}
-          <dl className="aero-about-creds">
+          <dl className="aero-about-creds" data-sticky-reveal>
             {ABOUT_CREDENTIALS.map((item) => (
               <div key={item.title} className="aero-about-cred">
                 <div>

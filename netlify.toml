@@ -1,0 +1,15 @@
+# Next.js on Netlify — OpenNext runtime is auto-injected (do not pin @netlify/plugin-nextjs).
+# Docs: https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview/
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Keep Next.js App Router on the Netlify Next runtime.
+# Do not add a SPA /* → /index.html redirect — it breaks SSR routes.
+
+# Forms: static detection stub at public/__forms.html (name: service-lead).
+# After deploy: Site → Forms → enable notifications to info@aerocleaning.ca

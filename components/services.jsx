@@ -14,13 +14,11 @@ export function Services() {
   const pathname = usePathname();
   const [openService, setOpenService] = useState(0);
   const [activeDeskRow, setActiveDeskRow] = useState(0);
-  const cardRefs = useRef([]);
+  const headerRefs = useRef([]);
   const deskRowRefs = useRef([]);
   const hoveringDesk = useRef(false);
   const rootRef = useRef(null);
   const openServiceRef = useRef(0);
-  const pendingIdx = useRef(-1);
-  const dwellTimer = useRef(null);
   const manualUntil = useRef(0);
 
   useEffect(() => {
@@ -47,16 +45,7 @@ export function Services() {
   }, []);
 
   useEffect(() => {
-    const DWELL_MS = 350;
-    const BAND_RATIO = 0.45; // ±45% of viewport height from center (middle 90%)
-
-    const clearDwell = () => {
-      if (dwellTimer.current) {
-        clearTimeout(dwellTimer.current);
-        dwellTimer.current = null;
-      }
-      pendingIdx.current = -1;
-    };
+    if (isMobile) return;
 
     const nearest = (list, centerY) => {
       let bestIdx = -1;
@@ -64,72 +53,88 @@ export function Services() {
       list.forEach((el, i) => {
         if (!el) return;
         const r = el.getBoundingClientRect();
-        const mid = r.top + r.height / 2;
-        const dist = Math.abs(mid - centerY);
+        const dist = Math.abs(r.top + r.height / 2 - centerY);
         if (dist < bestDist) {
           bestDist = dist;
           bestIdx = i;
         }
       });
-      return { idx: bestIdx, dist: bestDist };
+      return bestIdx;
     };
 
     const tick = () => {
-      const centerY = window.innerHeight / 2;
-
-      if (isMobile) {
-        if (Date.now() < manualUntil.current) return;
-
-        const { idx, dist } = nearest(cardRefs.current, centerY);
-        if (idx === -1) return;
-
-        const band = window.innerHeight * BAND_RATIO;
-        if (dist > band) return;
-
-        if (idx === openServiceRef.current) {
-          clearDwell();
-          return;
-        }
-
-        if (pendingIdx.current === idx && dwellTimer.current) return;
-
-        clearDwell();
-        pendingIdx.current = idx;
-        dwellTimer.current = setTimeout(() => {
-          if (pendingIdx.current === idx && Date.now() >= manualUntil.current) {
-            setOpenService(idx);
-          }
-          dwellTimer.current = null;
-          pendingIdx.current = -1;
-        }, DWELL_MS);
-        return;
-      }
-
-      if (!hoveringDesk.current) {
-        const { idx } = nearest(deskRowRefs.current, centerY);
-        if (idx !== -1) setActiveDeskRow(idx);
-      }
+      if (hoveringDesk.current) return;
+      const idx = nearest(deskRowRefs.current, window.innerHeight / 2);
+      if (idx !== -1) setActiveDeskRow(idx);
     };
 
-    const interval = setInterval(tick, 150);
     window.addEventListener("scroll", tick, { passive: true });
     window.addEventListener("resize", tick);
     tick();
     return () => {
-      clearInterval(interval);
-      clearDwell();
       window.removeEventListener("scroll", tick);
       window.removeEventListener("resize", tick);
     };
   }, [isMobile]);
 
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const LINE = 0.28;
+    const STEP_PX = 36;
+    let frame = 0;
+    let anchorScroll = window.scrollY;
+
+    const crossedIndex = (line) => {
+      let idx = -1;
+      const headers = headerRefs.current;
+      for (let i = 0; i < headers.length; i += 1) {
+        const header = headers[i];
+        if (!header) continue;
+        if (header.getBoundingClientRect().top <= line) idx = i;
+        else break;
+      }
+      return idx;
+    };
+
+    const tick = () => {
+      if (Date.now() < manualUntil.current) return;
+      const root = rootRef.current;
+      if (!root) return;
+      const section = root.getBoundingClientRect();
+      if (section.bottom < 0 || section.top > window.innerHeight) return;
+
+      const traveled = Math.abs(window.scrollY - anchorScroll);
+      if (traveled < STEP_PX) return;
+
+      const line = window.innerHeight * LINE;
+      const idx = crossedIndex(line);
+      const current = openServiceRef.current;
+      const target = idx < 0 ? 0 : idx;
+      if (target === current) {
+        anchorScroll = window.scrollY;
+        return;
+      }
+
+      const next = target > current ? current + 1 : current - 1;
+      anchorScroll = window.scrollY;
+      setOpenService(next);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [isMobile]);
+
   const onMobileToggle = (i, currentlyOpen) => {
-    if (dwellTimer.current) {
-      clearTimeout(dwellTimer.current);
-      dwellTimer.current = null;
-    }
-    pendingIdx.current = -1;
-    manualUntil.current = Date.now() + 1200;
+    manualUntil.current = Date.now() + 1400;
     setOpenService(currentlyOpen ? -1 : i);
   };
   return (
@@ -181,13 +186,13 @@ export function Services() {
       )}
 
       {isMobile && (
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "40px" }}>
+        <div className="aero-service-accordion" style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "40px" }}>
           {SERVICE_ROWS.map((s, i) => {
             const open = openService === i;
             return (
               <div
                 key={s.title}
-                ref={(el) => { cardRefs.current[i] = el; }}
+                ref={(el) => { headerRefs.current[i] = el?.querySelector("button") ?? null; }}
                 style={{
                   borderRadius: "20px",
                   border: `1.5px solid ${open ? "#0E7EFF" : "var(--color-divider)"}`,
@@ -200,7 +205,7 @@ export function Services() {
                 <button
                   type="button"
                   onClick={() => onMobileToggle(i, open)}
-                  style={{ position: "relative", display: "flex", alignItems: "center", width: "100%", minHeight: "64px", padding: "24px 48px", background: "transparent", border: 0, cursor: "pointer" }}
+                  style={{ position: "relative", display: "flex", alignItems: "center", width: "100%", minHeight: "112px", padding: "28px 56px", background: "transparent", border: 0, cursor: "pointer" }}
                 >
                     <h3 style={{ ...headingBase, fontSize: "24px", lineHeight: "30px", margin: 0, width: "100%", textAlign: "center", color: "var(--color-text)" }}>{s.title}</h3>
                   <span

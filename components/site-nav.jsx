@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { NAV_LINKS } from "@/lib/data";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 import { onHashLinkClick } from "@/lib/hash-nav";
 import { LiquidButton } from "@/components/liquid-button";
 import { PhoneIcon } from "@/components/icons";
@@ -74,6 +75,9 @@ function NavDropdown({ link, active }) {
 export function SiteNav() {
   const pathname = usePathname();
   const [hash, setHash] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuId = useId();
+  const navRef = useRef(null);
 
   useEffect(() => {
     const sync = () => setHash(window.location.hash);
@@ -85,6 +89,29 @@ export function SiteNav() {
       window.removeEventListener("popstate", sync);
     };
   }, [pathname]);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onPointerDown = (event) => {
+      if (!navRef.current?.contains(event.target)) setMenuOpen(false);
+    };
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [menuOpen]);
 
   const activeLabel = NAV_LINKS.find((link) => {
     if (link.children) {
@@ -99,12 +126,17 @@ export function SiteNav() {
     return link.href === pathname;
   })?.label;
 
+  function closeMenu() {
+    setMenuOpen(false);
+  }
+
   return (
     <nav
+      ref={navRef}
+      className={`aero-site-nav${menuOpen ? " is-menu-open" : ""}`}
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "32px",
         padding: "18px var(--aero-gutter)",
         borderBottom: "1px solid var(--color-divider)",
         backgroundColor: "#FFFFFF",
@@ -149,9 +181,62 @@ export function SiteNav() {
           );
         })}
       </div>
-      <LiquidButton href="tel:14105550142" size="compact" icon={<PhoneIcon size={14} />} style={{ flex: "0 0 auto" }}>
-        (410) 555-0142
+      <LiquidButton href={PHONE_TEL} size="compact" icon={<PhoneIcon size={14} />} style={{ flex: "0 0 auto" }}>
+        {PHONE_DISPLAY}
       </LiquidButton>
+      <button
+        type="button"
+        className="aero-nav-toggle"
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        aria-controls={menuId}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        <span className="aero-nav-toggle-bars" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
+      </button>
+      <div id={menuId} className="aero-nav-menu">
+        <ul className="aero-nav-menu-list">
+          {NAV_LINKS.map((link) => {
+            if (link.children) {
+              return (
+                <li key={link.label}>
+                  <span className="aero-nav-menu-label">{link.label}</span>
+                  <ul className="aero-nav-menu-sub">
+                    {link.children.map((child) => (
+                      <li key={child.label}>
+                        <Link href={child.href} className="aero-nav-menu-link" onClick={closeMenu}>
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            }
+            return (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="aero-nav-menu-link"
+                  onClick={(event) => {
+                    onHashLinkClick(link.href, pathname)(event);
+                    if (link.href.startsWith("/#") && pathname === "/") {
+                      setHash(link.href.slice(1));
+                    }
+                    closeMenu();
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </nav>
   );
 }

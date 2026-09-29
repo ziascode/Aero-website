@@ -42,6 +42,18 @@ a:hover { color: var(--color-accent); }
   border: 1px solid color-mix(in srgb, #ffffff 18%, transparent);
   box-shadow: 0 18px 40px color-mix(in srgb, #021428 40%, transparent);
   color-scheme: dark;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  translate: 0 12px;
+  transition: opacity 200ms ease, translate 200ms ease, visibility 0s linear 200ms;
+}
+.aero-sticky-cta.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  translate: 0 0;
+  transition: opacity 200ms ease, translate 200ms ease, visibility 0s;
 }
 .aero-sticky-cta-btn {
   display: inline-flex;
@@ -321,6 +333,26 @@ a:hover { color: var(--color-accent); }
   font-weight: 600;
   flex: 0 1 auto;
   min-width: 0;
+}
+.aero-site-nav {
+  position: relative;
+  z-index: 70;
+  gap: 32px;
+}
+.aero-nav-toggle {
+  display: none;
+}
+.aero-nav-menu {
+  display: none;
+}
+.aero-contact-copy-text {
+  max-width: 54ch;
+}
+.aero-reviews-section {
+  padding: 24px var(--aero-gutter) 88px;
+}
+.aero-reviews-cta-after {
+  display: none;
 }
 .aero-nav-dropdown {
   position: relative;
@@ -1637,6 +1669,10 @@ a:hover { color: var(--color-accent); }
 .aero-marquee-rev { animation: aero-marquee 30s linear infinite reverse; }
 .aero-marquee-slow:hover, .aero-marquee-rev:hover { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
+  .aero-sticky-cta,
+  .aero-sticky-cta.is-visible {
+    transition: none;
+  }
   .aero-marquee,
   .aero-marquee-slow,
   .aero-marquee-rev {
@@ -1702,9 +1738,8 @@ a:hover { color: var(--color-accent); }
   }
   .aero-video-hero-actions { margin-top: 24px; }
   .aero-video-hero-cta {
-    width: 100%;
-    justify-content: center;
-    padding: 15px 22px !important;
+    width: auto;
+    max-width: 100%;
   }
   .aero-video-hero-stats {
     grid-template-columns: 1fr 1fr;
@@ -1721,6 +1756,111 @@ a:hover { color: var(--color-accent); }
   }
   .aero-video-hero-rating-logo { width: 26px; height: 26px; }
   .aero-nav-links { display: none; }
+  .aero-site-nav { gap: 12px; }
+  .aero-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, #072445 16%, transparent);
+    border-radius: 12px;
+    background: #ffffff;
+    color: #072445;
+    cursor: pointer;
+  }
+  .aero-nav-toggle-bars {
+    display: grid;
+    gap: 5px;
+    width: 18px;
+  }
+  .aero-nav-toggle-bars span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+  .aero-site-nav.is-menu-open .aero-nav-toggle-bars span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .aero-site-nav.is-menu-open .aero-nav-toggle-bars span:nth-child(2) {
+    opacity: 0;
+  }
+  .aero-site-nav.is-menu-open .aero-nav-toggle-bars span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .aero-nav-toggle-bars span {
+    transition: transform 160ms ease, opacity 160ms ease;
+  }
+  .aero-site-nav.is-menu-open .aero-nav-menu {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    max-height: min(70vh, 520px);
+    overflow: auto;
+    padding: 8px var(--aero-gutter) 20px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-divider);
+    box-shadow: 0 18px 40px color-mix(in srgb, #021428 16%, transparent);
+  }
+  .aero-nav-menu-list,
+  .aero-nav-menu-sub {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .aero-nav-menu-link,
+  .aero-nav-menu-label {
+    display: block;
+    padding: 14px 0;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #072445;
+    text-decoration: none;
+  }
+  .aero-nav-menu-label {
+    color: color-mix(in srgb, #072445 55%, transparent);
+  }
+  .aero-nav-menu-sub {
+    padding: 0 0 8px 14px;
+  }
+  .aero-nav-menu-sub .aero-nav-menu-link {
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .aero-service-accordion { overflow-anchor: none; }
+  .aero-reviews-home .aero-reviews-dek,
+  .aero-reviews-home .aero-reviews-cta-lead { display: none; }
+  .aero-reviews-home .aero-reviews-grid {
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  #reviews.aero-reviews-home .aero-reviews-bands-rows {
+    margin-top: 0;
+  }
+  .aero-reviews-home {
+    padding-bottom: 48px;
+  }
+  .aero-reviews-home .aero-reviews-cta-after {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+  .aero-contact-copy,
+  .aero-contact-copy h2,
+  .aero-contact-copy-text {
+    width: 100%;
+    max-width: none;
+  }
   .aero-hero { padding: 40px var(--aero-gutter) 0; }
   .aero-hero-title { font-size: 34px; }
   .aero-hero-tabs { display: none; }
@@ -1962,6 +2102,9 @@ a:hover { color: var(--color-accent); }
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+.aero-lp-credentials-logo.is-on-light {
+  filter: brightness(0);
 }
 .aero-lp-credentials-title {
   display: block;
@@ -2396,6 +2539,13 @@ a:hover { color: var(--color-accent); }
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+.aero-lp-form-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 .aero-lp-form-row {
   display: grid;

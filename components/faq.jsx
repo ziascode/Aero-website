@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { FAQ_ITEMS } from "@/lib/data";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 import { sectionHeading } from "@/lib/styles";
 
 export function Faq({ hideKicker = false, items, phoneId } = {}) {
@@ -26,9 +27,9 @@ export function Faq({ hideKicker = false, items, phoneId } = {}) {
           <a
             className={`aero-faq-meta${phoneId ? " aero-lp-track-tel" : ""}`}
             id={phoneId}
-            href="tel:14105550142"
+            href={PHONE_TEL}
           >
-            (410) 555-0142
+            {PHONE_DISPLAY}
           </a>
 
           <figure className="aero-faq-photo">

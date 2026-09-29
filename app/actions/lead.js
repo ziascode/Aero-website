@@ -1,13 +1,15 @@
 "use server";
 
+/**
+ * @deprecated Lead forms submit via Netlify Forms (client POST to /__forms.html).
+ * Kept for any legacy imports; does not persist leads.
+ */
 export async function submitServiceLead(prevState, formData) {
   const name = String(formData.get("name") || "").trim();
   const company = String(formData.get("company") || "").trim();
   const phone = String(formData.get("phone") || "").trim();
   const email = String(formData.get("email") || "").trim();
   const city = String(formData.get("city") || "").trim();
-  const notes = String(formData.get("notes") || "").trim();
-  const source = String(formData.get("source") || "service").trim();
 
   if (!name || !company || !phone || !email || !city) {
     return {
@@ -20,26 +22,13 @@ export async function submitServiceLead(prevState, formData) {
     return { ok: false, message: "Enter a valid work email." };
   }
 
-  const lead = {
-    name,
-    company,
-    phone,
-    email,
-    city,
-    notes,
-    source,
-    submittedAt: new Date().toISOString(),
-  };
-
-  console.info("[service-lead]", lead);
-
   return {
     ok: true,
     message: "Thanks — a supervisor will follow up within one business day to book your walkthrough.",
   };
 }
 
-/** @deprecated Use submitServiceLead */
+/** @deprecated Use ServiceLeadForm / Netlify Forms */
 export async function submitJanitorialLead(prevState, formData) {
   return submitServiceLead(prevState, formData);
 }
