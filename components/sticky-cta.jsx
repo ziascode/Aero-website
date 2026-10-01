@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { PHONE_TEL } from "@/lib/contact";
 import { PhoneIcon } from "@/components/icons";
 
 export function StickyCta() {
   const pathname = usePathname();
-  const router = useRouter();
   const isServicePage = pathname?.startsWith("/services/");
+  const isBookPage = pathname === "/book";
+  const serviceSlug = isServicePage ? pathname.split("/").filter(Boolean).at(-1) : "";
+  const bookHref = serviceSlug ? `/book?service=${serviceSlug}` : "/book";
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -33,18 +35,7 @@ export function StickyCta() {
     };
   }, [pathname]);
 
-  function onBookClick(event) {
-    event.preventDefault();
-    const el = document.getElementById("contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-    if (pathname === "/") {
-      return;
-    }
-    router.push("/#contact");
-  }
+  if (isBookPage) return null;
 
   return (
     <aside
@@ -54,10 +45,9 @@ export function StickyCta() {
     >
       <Link
         id={isServicePage ? "service-sticky-cta" : "sticky-cta-book"}
-        href={isServicePage ? "#contact" : "/#contact"}
+        href={bookHref}
         className={`aero-sticky-cta-btn aero-sticky-cta-btn--primary${isServicePage ? " aero-lp-track-cta" : ""}`}
         tabIndex={visible ? undefined : -1}
-        onClick={onBookClick}
       >
         Book a consultation
       </Link>

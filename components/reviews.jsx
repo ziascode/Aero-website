@@ -46,7 +46,7 @@ function ReviewBands({ row1, row2 }) {
   );
 }
 
-export function Reviews({ ctaHref = "/#contact", bandsOnly = false } = {}) {
+export function Reviews({ ctaHref = "/book", bandsOnly = false } = {}) {
   const pathname = usePathname();
   const half = Math.ceil(REVIEWS.length / 2);
   const row1 = buildReviews(REVIEWS.slice(0, half), 0);

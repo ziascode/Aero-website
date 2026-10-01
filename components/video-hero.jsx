@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { onHashLinkClick } from "@/lib/hash-nav";
 import { LiquidButton } from "@/components/liquid-button";
 import { ArrowRight } from "@/components/icons";
 
@@ -16,7 +14,6 @@ const STATS = [
 
 export function VideoHero() {
   const videoRef = useRef(null);
-  const pathname = usePathname();
 
   useEffect(() => {
     const video = videoRef.current;
@@ -55,8 +52,7 @@ export function VideoHero() {
           </p>
           <div className="aero-video-hero-actions">
             <LiquidButton
-              href="/#contact"
-              onClick={onHashLinkClick("/#contact", pathname)}
+              href="/book"
               className="aero-video-hero-cta"
               icon={<ArrowRight />}
             >

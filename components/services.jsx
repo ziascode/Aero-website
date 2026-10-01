@@ -1,17 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { SERVICE_ROWS } from "@/lib/data";
 import { headingBase, sectionHeading, tagStyle } from "@/lib/styles";
 import { LiquidButton } from "@/components/liquid-button";
 import { ArrowUpRight, ChevronDown } from "@/components/icons";
 import { useIsMobile } from "@/hooks/use-is-mobile";
-import { onHashLinkClick } from "@/lib/hash-nav";
-import { usePathname } from "next/navigation";
 
 export function Services() {
   const isMobile = useIsMobile();
-  const pathname = usePathname();
   const [openService, setOpenService] = useState(0);
   const [activeDeskRow, setActiveDeskRow] = useState(0);
   const headerRefs = useRef([]);
@@ -20,29 +18,43 @@ export function Services() {
   const rootRef = useRef(null);
   const openServiceRef = useRef(0);
   const manualUntil = useRef(0);
+  const pinFrame = useRef(0);
+  const anchorScroll = useRef(0);
+
+  const pinHeader = (index) => {
+    cancelAnimationFrame(pinFrame.current);
+    const header = headerRefs.current[index];
+    if (!header) return;
+    const viewH = window.innerHeight;
+    const initialTop = header.getBoundingClientRect().top;
+    if (initialTop < 0 || initialTop > viewH) return;
+
+    let lastTop = initialTop;
+    let lastScroll = window.scrollY;
+    const end = performance.now() + 560;
+
+    const step = (now) => {
+      const top = header.getBoundingClientRect().top;
+      const scroll = window.scrollY;
+      const layoutDelta = top - lastTop + (scroll - lastScroll);
+      if (Math.abs(layoutDelta) > 0.5 && top > -40 && top < viewH) {
+        window.scrollBy(0, layoutDelta);
+      }
+      lastTop = header.getBoundingClientRect().top;
+      lastScroll = window.scrollY;
+      if (now < end) {
+        pinFrame.current = requestAnimationFrame(step);
+        return;
+      }
+      anchorScroll.current = window.scrollY;
+    };
+
+    pinFrame.current = requestAnimationFrame(step);
+  };
 
   useEffect(() => {
     openServiceRef.current = openService;
   }, [openService]);
-
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    const kick = () => {
-      root.querySelectorAll("video").forEach((v) => {
-        v.muted = true;
-        v.loop = true;
-        if (v.paused) v.play().catch(() => {});
-      });
-    };
-    kick();
-    const timer = setInterval(kick, 1200);
-    document.addEventListener("click", kick);
-    return () => {
-      clearInterval(timer);
-      document.removeEventListener("click", kick);
-    };
-  }, []);
 
   useEffect(() => {
     if (isMobile) return;
@@ -81,9 +93,11 @@ export function Services() {
     if (!isMobile) return;
 
     const LINE = 0.28;
-    const STEP_PX = 36;
+    const STEP_PX = 72;
+    const ANIM_MS = 560;
     let frame = 0;
-    let anchorScroll = window.scrollY;
+    let busyUntil = 0;
+    anchorScroll.current = window.scrollY;
 
     const crossedIndex = (line) => {
       let idx = -1;
@@ -98,13 +112,13 @@ export function Services() {
     };
 
     const tick = () => {
-      if (Date.now() < manualUntil.current) return;
+      if (Date.now() < manualUntil.current || Date.now() < busyUntil) return;
       const root = rootRef.current;
       if (!root) return;
       const section = root.getBoundingClientRect();
       if (section.bottom < 0 || section.top > window.innerHeight) return;
 
-      const traveled = Math.abs(window.scrollY - anchorScroll);
+      const traveled = Math.abs(window.scrollY - anchorScroll.current);
       if (traveled < STEP_PX) return;
 
       const line = window.innerHeight * LINE;
@@ -112,13 +126,15 @@ export function Services() {
       const current = openServiceRef.current;
       const target = idx < 0 ? 0 : idx;
       if (target === current) {
-        anchorScroll = window.scrollY;
+        anchorScroll.current = window.scrollY;
         return;
       }
 
       const next = target > current ? current + 1 : current - 1;
-      anchorScroll = window.scrollY;
+      anchorScroll.current = window.scrollY;
+      busyUntil = Date.now() + ANIM_MS;
       setOpenService(next);
+      pinHeader(next);
     };
 
     const onScroll = () => {
@@ -129,12 +145,15 @@ export function Services() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(pinFrame.current);
       window.removeEventListener("scroll", onScroll);
     };
   }, [isMobile]);
 
   const onMobileToggle = (i, currentlyOpen) => {
     manualUntil.current = Date.now() + 1400;
+    anchorScroll.current = window.scrollY;
+    if (!currentlyOpen) pinHeader(i);
     setOpenService(currentlyOpen ? -1 : i);
   };
   return (
@@ -167,8 +186,7 @@ export function Services() {
                   ))}
                 </ul>
                 <LiquidButton
-                  href="/#contact"
-                  onClick={onHashLinkClick("/#contact", pathname)}
+                  href={`/book?service=${s.slug}`}
                   icon={<ArrowUpRight />}
                   style={{ width: "40%", alignSelf: "flex-start" }}
                 >
@@ -177,7 +195,7 @@ export function Services() {
               </div>
               <div className="aero-service-media">
                 <div className="aero-service-media-frame">
-                  <video autoPlay loop muted playsInline src={s.video} />
+                  <Image src={s.image} alt={s.imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: "cover" }} />
                 </div>
               </div>
             </article>
@@ -214,8 +232,8 @@ export function Services() {
                     <ChevronDown />
                   </span>
                 </button>
-                <div style={{ display: "grid", gridTemplateRows: open ? "1fr" : "0fr", transition: "grid-template-rows 380ms ease" }}>
-                  <div style={{ overflow: "hidden", minHeight: 0 }}>
+                <div className={`aero-service-panel${open ? " is-open" : ""}`}>
+                  <div className="aero-service-panel-inner">
                     <div style={{ padding: "0 20px 22px" }}>
                       <p style={{ fontSize: "16px", lineHeight: "24px", margin: "0 0 16px", color: "#000000", fontWeight: 400 }}>{s.desc}</p>
                       <ul className="aero-service-bullets">
@@ -225,8 +243,7 @@ export function Services() {
                       </ul>
                       <div style={{ marginBottom: "16px" }}>
                         <LiquidButton
-                          href="/#contact"
-                          onClick={onHashLinkClick("/#contact", pathname)}
+                          href={`/book?service=${s.slug}`}
                           icon={<ArrowUpRight />}
                         >
                           Book service
@@ -234,9 +251,7 @@ export function Services() {
                       </div>
                       <div className="aero-service-media" style={{ padding: 0 }}>
                         <div className="aero-service-media-frame">
-                          {s.video && (
-                            <video autoPlay loop muted playsInline src={s.video} />
-                          )}
+                          <Image src={s.image} alt={s.imageAlt} fill sizes="100vw" style={{ objectFit: "cover" }} />
                         </div>
                       </div>
                     </div>

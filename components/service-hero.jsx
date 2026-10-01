@@ -6,10 +6,6 @@ import { ArrowRight, PhoneIcon, Stars } from "@/components/icons";
 import { PHONE_TEL } from "@/lib/contact";
 
 export function ServiceHero({ page, children, trackingPrefix = "service" }) {
-  function scrollToContact(event) {
-    event.preventDefault();
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 
   const primaryId = `${trackingPrefix}-hero-cta`;
   const telId = `${trackingPrefix}-hero-tel`;
@@ -41,8 +37,7 @@ export function ServiceHero({ page, children, trackingPrefix = "service" }) {
             <div className="aero-service-hero-actions">
               <LiquidButton
                 id={primaryId}
-                href="#contact"
-                onClick={scrollToContact}
+                href={`/book?service=${page.slug}`}
                 icon={<ArrowRight />}
                 className="aero-lp-track-cta"
               >
