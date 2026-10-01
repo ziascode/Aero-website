@@ -1868,6 +1868,8 @@ a:hover { color: var(--color-accent); }
     justify-content: center;
     margin-top: 32px;
   }
+  .aero-reviews-home .aero-marquee-slow { animation-duration: 68s; }
+  .aero-reviews-home .aero-marquee-rev { animation-duration: 60s; }
   .aero-contact-copy,
   .aero-contact-copy h2,
   .aero-contact-copy-text {
@@ -1967,6 +1969,9 @@ a:hover { color: var(--color-accent); }
   .aero-reviews-bands--hero .aero-review-card {
     flex: 1 1 auto;
     min-width: 0;
+  }
+  .aero-reviews-bands--hero .aero-review-card:nth-child(n + 5) {
+    display: none !important;
   }
   .aero-service-includes { padding: 48px var(--aero-gutter) 24px; }
   .aero-service-page--airy .aero-service-hero { padding-top: 40px; }
@@ -3194,6 +3199,11 @@ a:hover { color: var(--color-accent); }
   }
   .aero-book-panel {
     order: 2;
+    align-self: stretch;
+    width: 100%;
+  }
+  .aero-book-panel .aero-lp-contact-form-wrap {
+    width: 100%;
   }
   .aero-book-card {
     order: 3;
