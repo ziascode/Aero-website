@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useState } from "react";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
+import { BOOK_SERVICES } from "@/lib/data";
 import { LiquidButton } from "@/components/liquid-button";
 import { ArrowRight, PhoneIcon } from "@/components/icons";
 import { sectionHeading } from "@/lib/styles";
@@ -19,6 +20,9 @@ export function ServiceLeadForm({ page, source, trackingPrefix = "service" }) {
   const uid = useId().replace(/:/g, "");
   const formId = `${trackingPrefix}-lead-form`;
   const eventId = `${trackingPrefix}-lead-form`;
+  const [service, setService] = useState(
+    () => BOOK_SERVICES.find((item) => item.slug === page.slug)?.label || ""
+  );
   const [pending, setPending] = useState(false);
   const [ok, setOk] = useState(false);
   const [message, setMessage] = useState("");
@@ -50,10 +54,11 @@ export function ServiceLeadForm({ page, source, trackingPrefix = "service" }) {
     const phone = String(new FormData(form).get("phone") || "").trim();
     const email = String(new FormData(form).get("email") || "").trim();
     const city = String(new FormData(form).get("city") || "").trim();
+    const chosen = String(new FormData(form).get("service") || "").trim();
 
-    if (!name || !company || !phone || !email || !city) {
+    if (!name || !company || !phone || !email || !city || !chosen) {
       setPending(false);
-      setMessage("Please fill in name, company, phone, email and city.");
+      setMessage("Please fill in name, company, phone, email, city and service.");
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -163,9 +168,22 @@ export function ServiceLeadForm({ page, source, trackingPrefix = "service" }) {
                   required
                 />
               </label>
-              <label htmlFor={`svc-notes-${uid}`}>
-                Rough size or number of washrooms (optional)
-                <input id={`svc-notes-${uid}`} name="notes" type="text" />
+              <label htmlFor={`svc-service-${uid}`}>
+                Service
+                <select
+                  id={`svc-service-${uid}`}
+                  name="service"
+                  value={service}
+                  required
+                  onChange={(event) => setService(event.target.value)}
+                >
+                  <option value="">Select a service</option>
+                  {BOOK_SERVICES.map((item) => (
+                    <option key={item.slug} value={item.label}>
+                      {item.label}
+                    </option>
+                  ))}
+                </select>
               </label>
               {message ? (
                 <p className="aero-lp-form-error" role="alert">

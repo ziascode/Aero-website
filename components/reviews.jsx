@@ -89,7 +89,7 @@ export function Reviews({ ctaHref = "/book", bandsOnly = false } = {}) {
             Every review below comes from a live Google listing — offices, depots and production sites across the region, scored after the first quarter of service.
           </p>
           <span style={{ display: "block", marginTop: "24px", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }}>
-            5.0 average across 31 Google reviews
+            5.0 · Rated on Google
           </span>
           <LiquidButton
             href={ctaHref}

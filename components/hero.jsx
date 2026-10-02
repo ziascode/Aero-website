@@ -41,7 +41,7 @@ export function Hero() {
             <Image src="/google.png" alt="Google" width={20} height={20} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </span>
           <Stars />
-          5.0 · 31 Google reviews
+          5.0 · Rated on Google
         </div>
 
         <h1 style={{ ...headingBase, fontSize: "clamp(46px, 6.4vw, 90px)", lineHeight: 1.04, margin: "0 auto", maxWidth: "20ch" }}>
