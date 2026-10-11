@@ -8,11 +8,11 @@ export function About({ hideMoreLink = false } = {}) {
       <div className="aero-about-top">
         <figure className="aero-about-photo">
           <Image
-            src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg"
+            src="/about-boardroom.jpg"
             alt="A modern Guelph-area boardroom after a commercial clean"
             fill
             sizes="(max-width: 768px) 100vw, 48vw"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", objectPosition: "center 68%" }}
           />
         </figure>
 
@@ -35,6 +35,7 @@ export function About({ hideMoreLink = false } = {}) {
                   alt={`${item.title} logo`}
                   width={item.rounded ? 56 : 88}
                   height={56}
+                  unoptimized={item.logo.endsWith(".svg")}
                   className={["aero-about-cred-logo", item.rounded && "is-rounded"].filter(Boolean).join(" ")}
                 />
               </div>
@@ -56,7 +57,7 @@ export function About({ hideMoreLink = false } = {}) {
         <ul className="aero-about-give-grid">
           {ABOUT_GIVEBACK.map((org) => (
             <li key={org.name} className="aero-about-give-tile">
-              <Image src={org.logo} alt={org.name} width={240} height={140} />
+              <Image src={org.logo} alt={org.name} width={240} height={140} unoptimized={org.logo.endsWith(".svg")} />
             </li>
           ))}
         </ul>

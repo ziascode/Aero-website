@@ -27,6 +27,7 @@ export function LogoMarquee() {
                 alt={alt}
                 width={160}
                 height={40}
+                unoptimized={src.endsWith(".svg")}
                 style={{ height: "40px", width: "auto", maxWidth: "160px", objectFit: "contain", filter: "grayscale(100%)", opacity: 0.7 }}
               />
             </div>

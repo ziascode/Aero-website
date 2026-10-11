@@ -18,8 +18,16 @@ export function VideoHero() {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.muted = true;
-    video.play().catch(() => {});
+    const start = () => {
+      video.muted = true;
+      video.play().catch(() => {});
+    };
+    if (window.requestIdleCallback) {
+      const id = window.requestIdleCallback(start, { timeout: 4000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(start, 2500);
+    return () => window.clearTimeout(id);
   }, []);
 
   return (
@@ -27,15 +35,13 @@ export function VideoHero() {
       <video
         ref={videoRef}
         className="aero-video-hero-media"
-        autoPlay
         muted
         loop
         playsInline
-        preload="auto"
-        poster="https://images.pexels.com/photos/9300768/pexels-photo-9300768.jpeg"
+        preload="none"
+        poster="/office-hero.jpg"
       >
         <source src="http://demo.fableux.com/wp-content/uploads/2026/07/video.mp4" type="video/mp4" />
-        <source src="https://www.pexels.com/download/video/6195524/" type="video/mp4" />
       </video>
       <div className="aero-video-hero-overlay" />
 

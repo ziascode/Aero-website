@@ -38,7 +38,7 @@ export function Faq({ hideKicker = false, items, phoneId } = {}) {
           <figure className="aero-faq-photo">
             <div>
               <Image
-                src="http://demo.fableux.com/wp-content/uploads/2026/08/unsplash1-scaled.jpg"
+                src="/gbp/janitorial.jpg"
                 alt="An Aero crew member machine-mopping a facility floor"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"

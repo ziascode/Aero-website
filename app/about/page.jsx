@@ -92,6 +92,7 @@ export default function AboutPage() {
                 alt=""
                 width={cred.rounded ? 72 : 120}
                 height={72}
+                unoptimized={cred.logo.endsWith(".svg")}
               />
             </div>
           ))}
@@ -120,7 +121,7 @@ export default function AboutPage() {
         <ul className="aero-about-give-grid">
           {ABOUT_GIVEBACK.map((org) => (
             <li className="aero-about-give-tile" key={org.name}>
-              <Image src={org.logo} alt={org.name} width={220} height={120} />
+              <Image src={org.logo} alt={org.name} width={220} height={120} unoptimized={org.logo.endsWith(".svg")} />
             </li>
           ))}
         </ul>

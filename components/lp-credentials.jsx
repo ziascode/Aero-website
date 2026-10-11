@@ -12,6 +12,7 @@ export function LpCredentials() {
               alt=""
               width={item.rounded ? 48 : 72}
               height={48}
+              unoptimized={item.logo.endsWith(".svg")}
               className={["aero-lp-credentials-logo", item.rounded ? "is-rounded" : "", item.title === "BBB" ? "is-on-light" : ""].filter(Boolean).join(" ")}
             />
             <div>

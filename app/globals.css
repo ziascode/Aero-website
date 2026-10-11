@@ -1205,9 +1205,13 @@ a:hover { color: var(--color-accent); }
   .aero-reviews-bands-grid { gap: 28px 14px; }
 }
 .aero-reviews-bands-rows {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto;
   gap: 18px;
+}
+.aero-reviews-bands-rows > div {
+  min-width: 0;
+  min-height: max-content;
 }
 #reviews:not(.aero-reviews-bands) .aero-reviews-bands-rows {
   margin-top: 40px;
@@ -1923,6 +1927,17 @@ a:hover { color: var(--color-accent); }
   }
   .aero-reviews-home .aero-marquee-slow { animation-duration: 110s; }
   .aero-reviews-home .aero-marquee-rev { animation-duration: 100s; }
+  .aero-reviews-home .aero-review-card {
+    flex-basis: 260px !important;
+    padding: 14px 16px !important;
+    gap: 8px !important;
+  }
+  .aero-reviews-home .aero-review-card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
   .aero-contact-copy,
   .aero-contact-copy h2,
   .aero-contact-copy-text {

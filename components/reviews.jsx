@@ -128,7 +128,7 @@ export function Reviews({ ctaHref = "/book", bandsOnly = false } = {}) {
         </div>
         <figure style={{ position: "relative", margin: 0, borderRadius: "25px", background: "rgba(255,255,255,0.45)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(255,255,255,0.7)", padding: "8px" }}>
           <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 3", borderRadius: "18px", overflow: "hidden" }}>
-            <Image src="/review6.png" alt="Google reviews for Aero Cleaning Services" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+            <Image src="/review6.jpg" alt="Google reviews for Aero Cleaning Services" fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: "cover", objectPosition: "center" }} />
           </div>
         </figure>
       </div>

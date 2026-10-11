@@ -38,8 +38,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${lato.variable} ${leagueSpartan.variable} ${poppins.variable}`}>
       <head>
-        <link rel="preconnect" href="http://demo.fableux.com" />
-        <link rel="dns-prefetch" href="https://images.pexels.com" />
         <link rel="stylesheet" href="/ds/styles.css" />
       </head>
       <body className={lato.className}>
