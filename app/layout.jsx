@@ -1,5 +1,7 @@
 import { Lato, League_Spartan, Poppins } from "next/font/google";
+import { JsonLd } from "@/components/json-ld";
 import { SiteFrame } from "@/components/site-frame";
+import { localBusinessJsonLd } from "@/lib/schema";
 import "./globals.css";
 
 const lato = Lato({
@@ -41,6 +43,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/ds/styles.css" />
       </head>
       <body className={lato.className}>
+        <JsonLd data={localBusinessJsonLd} />
         <SiteFrame>{children}</SiteFrame>
       </body>
     </html>

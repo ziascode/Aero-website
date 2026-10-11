@@ -653,15 +653,13 @@ a:hover { color: var(--color-accent); }
   margin: 32px 0 0;
 }
 .aero-about-cred {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 18px 0;
+  position: relative;
+  display: block;
+  padding: 18px 100px 18px 0;
   min-width: 0;
 }
 .aero-about-cred:nth-child(odd) {
-  padding-right: 28px;
+  padding-right: 128px;
   border-right: 1px solid color-mix(in srgb, #ffffff 16%, transparent);
 }
 .aero-about-cred:nth-child(even) {
@@ -684,10 +682,16 @@ a:hover { color: var(--color-accent); }
   color: color-mix(in srgb, #ffffff 62%, transparent);
 }
 .aero-about-cred-logo {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   width: 88px;
   height: 56px;
   object-fit: contain;
+}
+.aero-about-cred:nth-child(odd) .aero-about-cred-logo {
+  right: 28px;
 }
 .aero-about-cred-logo.is-rounded {
   width: 56px;
@@ -1956,11 +1960,17 @@ a:hover { color: var(--color-accent); }
   }
   .aero-about-photo { aspect-ratio: 4 / 3; }
   .aero-about-copy h2 { max-width: none; }
+  .aero-about-cred {
+    padding-right: 76px;
+  }
   .aero-about-cred:nth-child(odd) {
-    padding-right: 16px;
+    padding-right: 92px;
   }
   .aero-about-cred:nth-child(even) {
     padding-left: 16px;
+  }
+  .aero-about-cred:nth-child(odd) .aero-about-cred-logo {
+    right: 16px;
   }
   .aero-about-cred-logo {
     width: 64px;
@@ -2873,13 +2883,10 @@ a:hover { color: var(--color-accent); }
   margin: 32px 0 0;
 }
 .aero-about-page-cred {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto auto;
-  column-gap: 16px;
-  align-items: center;
+  position: relative;
+  display: block;
   margin: 0;
-  padding: 20px 22px;
+  padding: 20px 126px 20px 22px;
   border-radius: 18px;
   background: #f3f4f6;
 }
@@ -2897,8 +2904,10 @@ a:hover { color: var(--color-accent); }
   color: color-mix(in srgb, var(--color-text) 68%, transparent);
 }
 .aero-about-page-cred img {
-  grid-row: 1 / span 2;
-  grid-column: 2;
+  position: absolute;
+  top: 50%;
+  right: 22px;
+  transform: translateY(-50%);
   width: 88px;
   height: 56px;
   object-fit: contain;

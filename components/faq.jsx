@@ -5,8 +5,10 @@ import { useState } from "react";
 import { FAQ_ITEMS } from "@/lib/data";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 import { sectionHeading } from "@/lib/styles";
+import { JsonLd } from "@/components/json-ld";
 import { LiquidButton } from "@/components/liquid-button";
 import { PhoneIcon } from "@/components/icons";
+import { faqPageJsonLd } from "@/lib/schema";
 
 export function Faq({ hideKicker = false, items, phoneId } = {}) {
   const [openItem, setOpenItem] = useState(0);
@@ -14,6 +16,7 @@ export function Faq({ hideKicker = false, items, phoneId } = {}) {
 
   return (
     <section id="faq" className="aero-faq" aria-labelledby="faq-heading">
+      <JsonLd data={faqPageJsonLd(faqItems)} />
       {hideKicker ? null : (
         <span className="aero-faq-kicker">Frequently Asked Questions</span>
       )}

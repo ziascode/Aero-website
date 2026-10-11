@@ -85,15 +85,17 @@ export default function AboutPage() {
           {ABOUT_CREDENTIALS.map((cred) => (
             <div className="aero-about-page-cred" key={cred.title}>
               <dt>{cred.title}</dt>
-              <dd>{cred.detail}</dd>
-              <Image
-                className={[cred.rounded ? "is-rounded" : "", cred.title === "BBB" ? "is-mark" : ""].filter(Boolean).join(" ") || undefined}
-                src={cred.logo}
-                alt=""
-                width={cred.rounded ? 72 : 120}
-                height={72}
-                unoptimized={cred.logo.endsWith(".svg")}
-              />
+              <dd>
+                {cred.detail}
+                <Image
+                  className={[cred.rounded ? "is-rounded" : "", cred.title === "BBB" ? "is-mark" : ""].filter(Boolean).join(" ") || undefined}
+                  src={cred.logo}
+                  alt=""
+                  width={cred.rounded ? 72 : 120}
+                  height={72}
+                  unoptimized={cred.logo.endsWith(".svg")}
+                />
+              </dd>
             </div>
           ))}
         </dl>

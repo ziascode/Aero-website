@@ -26,18 +26,18 @@ export function About({ hideMoreLink = false } = {}) {
           <dl className="aero-about-creds" data-sticky-reveal>
             {ABOUT_CREDENTIALS.map((item) => (
               <div key={item.title} className="aero-about-cred">
-                <div>
-                  <dt>{item.title}</dt>
-                  <dd>{item.detail}</dd>
-                </div>
-                <Image
-                  src={item.logo}
-                  alt={`${item.title} logo`}
-                  width={item.rounded ? 56 : 88}
-                  height={56}
-                  unoptimized={item.logo.endsWith(".svg")}
-                  className={["aero-about-cred-logo", item.rounded && "is-rounded"].filter(Boolean).join(" ")}
-                />
+                <dt>{item.title}</dt>
+                <dd>
+                  {item.detail}
+                  <Image
+                    src={item.logo}
+                    alt=""
+                    width={item.rounded ? 56 : 88}
+                    height={56}
+                    unoptimized={item.logo.endsWith(".svg")}
+                    className={["aero-about-cred-logo", item.rounded && "is-rounded"].filter(Boolean).join(" ")}
+                  />
+                </dd>
               </div>
             ))}
           </dl>
