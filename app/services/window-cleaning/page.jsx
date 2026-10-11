@@ -4,6 +4,7 @@ import { SERVICE_PAGES } from "@/lib/data";
 const page = SERVICE_PAGES["window-cleaning"];
 
 export const metadata = {
+  alternates: { canonical: "/services/window-cleaning" },
   title: "Commercial Window Cleaning Guelph | Aero Cleaning",
   description:
     "Interior and exterior commercial window cleaning across Guelph, Kitchener, Waterloo and Cambridge. Storefronts, partitions and high-level glass.",

@@ -3,19 +3,19 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AVATAR_COLORS, REVIEWS } from "@/lib/data";
+import { GOOGLE_MAPS_URL } from "@/lib/contact";
 import { onHashLinkClick } from "@/lib/hash-nav";
 import { sectionHeading } from "@/lib/styles";
 import { LiquidButton } from "@/components/liquid-button";
-import { ArrowRight } from "@/components/icons";
+import { ArrowRight, Stars } from "@/components/icons";
 import { ReviewCard } from "@/components/review-card";
 
 function buildReviews(arr, offset) {
-  const mapped = arr.map((r, i) => ({
+  return arr.map((r, i) => ({
     ...r,
     initial: r.name[0],
     avatarBg: AVATAR_COLORS[(i + offset) % AVATAR_COLORS.length],
   }));
-  return mapped.concat(mapped);
 }
 
 const maskStyle = {
@@ -25,21 +25,29 @@ const maskStyle = {
   WebkitMaskImage: "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)",
 };
 
+function MarqueeSet({ reviews, copy, hidden = false }) {
+  return (
+    <div className="aero-marquee-set" aria-hidden={hidden || undefined}>
+      {reviews.map((r, i) => (
+        <ReviewCard key={`${copy}-${r.name}-${i}`} r={r} glass />
+      ))}
+    </div>
+  );
+}
+
 function ReviewBands({ row1, row2 }) {
   return (
     <div className="aero-reviews-bands-rows">
       <div style={maskStyle}>
-        <div className="aero-marquee-slow" style={{ display: "flex", width: "max-content", gap: "20px" }}>
-          {row1.map((r, i) => (
-            <ReviewCard key={`r1-${i}`} r={r} glass />
-          ))}
+        <div className="aero-marquee-slow">
+          <MarqueeSet reviews={row1} copy="a" />
+          <MarqueeSet reviews={row1} copy="b" hidden />
         </div>
       </div>
       <div style={maskStyle}>
-        <div className="aero-marquee-rev" style={{ display: "flex", width: "max-content", gap: "20px" }}>
-          {row2.map((r, i) => (
-            <ReviewCard key={`r2-${i}`} r={r} glass />
-          ))}
+        <div className="aero-marquee-rev">
+          <MarqueeSet reviews={row2} copy="a" />
+          <MarqueeSet reviews={row2} copy="b" hidden />
         </div>
       </div>
     </div>
@@ -83,23 +91,40 @@ export function Reviews({ ctaHref = "/book", bandsOnly = false } = {}) {
       <div className="aero-reviews-grid">
         <div style={{ borderRadius: "25px", padding: "10px 0", backgroundColor: "#FFFFFF" }}>
           <h2 style={{ ...sectionHeading, margin: 0, maxWidth: "22ch", color: "var(--color-text)" }}>
-            Rated 5.0 by the people who manage the buildings
+            Rated 5 stars by your local businesses
           </h2>
           <p className="aero-reviews-dek" style={{ maxWidth: "46ch", margin: "20px 0 0", fontSize: "16px", lineHeight: "24px", color: "color-mix(in srgb, var(--color-text) 78%, transparent)" }}>
             Every review below comes from a live Google listing — offices, depots and production sites across the region, scored after the first quarter of service.
           </p>
-          <span style={{ display: "block", marginTop: "24px", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", color: "color-mix(in srgb, var(--color-text) 70%, transparent)" }}>
-            5.0 · Rated on Google
-          </span>
-          <LiquidButton
-            href={ctaHref}
-            className="aero-reviews-cta-lead"
-            onClick={onBook}
-            icon={<ArrowRight size={14} />}
-            style={{ marginTop: "20px" }}
-          >
-            Book service
-          </LiquidButton>
+          <div className="aero-reviews-actions">
+            <div className="aero-reviews-rating" aria-label="5 stars on Google">
+              <Image src="/google.png" alt="" width={40} height={40} className="aero-reviews-rating-logo" />
+              <span className="aero-reviews-rating-copy">
+                <span className="aero-reviews-rating-brand">Google</span>
+                <Stars size={22} gap={4} />
+              </span>
+            </div>
+            {isHome ? (
+              <LiquidButton
+                href={GOOGLE_MAPS_URL}
+                className="aero-reviews-cta-lead"
+                target="_blank"
+                rel="noreferrer"
+                icon={<ArrowRight size={14} />}
+              >
+                Leave a review
+              </LiquidButton>
+            ) : (
+              <LiquidButton
+                href={ctaHref}
+                className="aero-reviews-cta-lead"
+                onClick={onBook}
+                icon={<ArrowRight size={14} />}
+              >
+                Book service
+              </LiquidButton>
+            )}
+          </div>
         </div>
         <figure style={{ position: "relative", margin: 0, borderRadius: "25px", background: "rgba(255,255,255,0.45)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(255,255,255,0.7)", padding: "8px" }}>
           <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 3", borderRadius: "18px", overflow: "hidden" }}>
@@ -109,13 +134,6 @@ export function Reviews({ ctaHref = "/book", bandsOnly = false } = {}) {
       </div>
 
       <ReviewBands row1={row1} row2={row2} />
-      {isHome ? (
-        <div className="aero-reviews-cta-after">
-          <LiquidButton href={ctaHref} onClick={onBook} icon={<ArrowRight size={14} />}>
-            Book service
-          </LiquidButton>
-        </div>
-      ) : null}
     </section>
   );
 }

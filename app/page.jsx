@@ -11,6 +11,10 @@ import { Stats } from "@/components/stats";
 import { VideoHero } from "@/components/video-hero";
 import { Wbe } from "@/components/wbe";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function HomePage() {
   return (
     <>

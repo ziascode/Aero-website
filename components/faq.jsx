@@ -5,6 +5,8 @@ import { useState } from "react";
 import { FAQ_ITEMS } from "@/lib/data";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 import { sectionHeading } from "@/lib/styles";
+import { LiquidButton } from "@/components/liquid-button";
+import { PhoneIcon } from "@/components/icons";
 
 export function Faq({ hideKicker = false, items, phoneId } = {}) {
   const [openItem, setOpenItem] = useState(0);
@@ -24,13 +26,14 @@ export function Faq({ hideKicker = false, items, phoneId } = {}) {
           <p className="aero-faq-lede">
             The questions that come up on almost every walkthrough. If yours is not here, a supervisor will answer it on the call.
           </p>
-          <a
-            className={`aero-faq-meta${phoneId ? " aero-lp-track-tel" : ""}`}
+          <LiquidButton
+            className={phoneId ? "aero-faq-call aero-lp-track-tel" : "aero-faq-call"}
             id={phoneId}
             href={PHONE_TEL}
+            icon={<PhoneIcon />}
           >
             {PHONE_DISPLAY}
-          </a>
+          </LiquidButton>
 
           <figure className="aero-faq-photo">
             <div>

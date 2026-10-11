@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  skipTrailingSlashRedirect: true,
   images: {
     unoptimized: true,
     dangerouslyAllowSVG: true,
@@ -10,15 +11,6 @@ const nextConfig = {
       { protocol: "https", hostname: "upload.wikimedia.org" },
       { protocol: "https", hostname: "images.pexels.com" },
     ],
-  },
-  async redirects() {
-    return [
-      {
-        source: "/lp/janitorial-services",
-        destination: "/services/janitorial-services",
-        permanent: true,
-      },
-    ];
   },
 };
 export default nextConfig;

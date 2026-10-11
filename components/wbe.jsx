@@ -23,7 +23,7 @@ export function Wbe() {
 
         <div className="aero-wbe-copy">
           <span className="aero-wbe-kicker">Certified diverse supplier</span>
-          <h2 id="wbe-heading" style={{ ...sectionHeading, margin: "12px 0 0", maxWidth: "24ch" }}>
+          <h2 id="wbe-heading" style={{ ...sectionHeading, margin: "12px auto 0", maxWidth: "24ch" }}>
             Women-owned, certified by WBE Canada
           </h2>
           <p>

@@ -5,6 +5,7 @@ import { ClockIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import { EMAIL, EMAIL_MAILTO, LOCATION, PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 
 export const metadata = {
+  alternates: { canonical: "/book" },
   title: "Book your cleaning service — Aero Cleaning Services",
   description:
     "Request a free cleaning quote for office, post-construction, or janitorial service in Guelph. Aero’s offices are open 24 hours a day.",

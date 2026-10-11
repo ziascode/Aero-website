@@ -351,9 +351,6 @@ a:hover { color: var(--color-accent); }
 .aero-reviews-section {
   padding: 24px var(--aero-gutter) 88px;
 }
-.aero-reviews-cta-after {
-  display: none;
-}
 .aero-nav-dropdown {
   position: relative;
   align-self: stretch;
@@ -759,6 +756,41 @@ a:hover { color: var(--color-accent); }
   gap: 56px;
   align-items: center;
   margin-bottom: 56px;
+}
+.aero-reviews-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+.aero-reviews-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 12px 18px 12px 12px;
+  border-radius: 18px;
+  background: #f4f7fb;
+  border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+.aero-reviews-rating-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.aero-reviews-rating-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.aero-reviews-rating-brand {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text);
 }
 
 .aero-contact-grid {
@@ -1504,6 +1536,9 @@ a:hover { color: var(--color-accent); }
 .aero-faq-meta:hover {
   color: #0e7eff;
 }
+.aero-faq-call {
+  margin-top: 24px;
+}
 .aero-faq-photo {
   position: relative;
   margin: 32px 0 0;
@@ -1616,13 +1651,22 @@ a:hover { color: var(--color-accent); }
   background: #ffffff;
 }
 .aero-wbe-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
-  gap: 56px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 28px;
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
 }
 .aero-wbe-badge {
+  width: min(180px, 100%);
   margin: 0;
+}
+.aero-wbe-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .aero-wbe-badge img {
   display: block;
@@ -1640,7 +1684,7 @@ a:hover { color: var(--color-accent); }
   color: var(--color-accent-700);
 }
 .aero-wbe-copy p {
-  margin: 20px 0 0;
+  margin: 20px auto 0;
   max-width: 58ch;
   color: color-mix(in srgb, var(--color-text) 78%, transparent);
 }
@@ -1651,6 +1695,7 @@ a:hover { color: var(--color-accent); }
   list-style: none;
   margin: 24px 0 0;
   padding: 0;
+  text-align: left;
 }
 .aero-wbe-points li {
   display: flex;
@@ -1668,6 +1713,19 @@ a:hover { color: var(--color-accent); }
 .aero-marquee-slow { animation: aero-marquee 34s linear infinite; }
 .aero-marquee-rev { animation: aero-marquee 30s linear infinite reverse; }
 .aero-marquee-slow:hover, .aero-marquee-rev:hover { animation-play-state: paused; }
+.aero-marquee-set {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 20px;
+  padding-right: 20px;
+}
+.aero-reviews-bands-rows .aero-marquee-slow,
+.aero-reviews-bands-rows .aero-marquee-rev {
+  display: flex;
+  width: max-content;
+}
+.aero-reviews-bands-rows .aero-marquee-slow { animation-duration: 110s; }
+.aero-reviews-bands-rows .aero-marquee-rev { animation-duration: 100s; }
 @media (prefers-reduced-motion: reduce) {
   .aero-sticky-cta,
   .aero-sticky-cta.is-visible {
@@ -1851,8 +1909,8 @@ a:hover { color: var(--color-accent); }
   @media (prefers-reduced-motion: reduce) {
     .aero-service-panel { transition: none; }
   }
-  .aero-reviews-home .aero-reviews-dek,
-  .aero-reviews-home .aero-reviews-cta-lead { display: none; }
+  .aero-reviews-home .aero-reviews-dek { display: none; }
+  .aero-reviews-home .aero-reviews-actions { margin-top: 20px; }
   .aero-reviews-home .aero-reviews-grid {
     gap: 24px;
     margin-bottom: 28px;
@@ -1863,13 +1921,8 @@ a:hover { color: var(--color-accent); }
   .aero-reviews-home {
     padding-bottom: 48px;
   }
-  .aero-reviews-home .aero-reviews-cta-after {
-    display: flex;
-    justify-content: center;
-    margin-top: 32px;
-  }
-  .aero-reviews-home .aero-marquee-slow { animation-duration: 68s; }
-  .aero-reviews-home .aero-marquee-rev { animation-duration: 60s; }
+  .aero-reviews-home .aero-marquee-slow { animation-duration: 110s; }
+  .aero-reviews-home .aero-marquee-rev { animation-duration: 100s; }
   .aero-contact-copy,
   .aero-contact-copy h2,
   .aero-contact-copy-text {
@@ -2736,7 +2789,6 @@ a:hover { color: var(--color-accent); }
 }
 .aero-about-page-lead p:last-child {
   grid-column: 1 / -1;
-  max-width: 62ch;
 }
 .aero-about-page-lead p,
 .aero-about-page-stand-copy,
@@ -2770,6 +2822,8 @@ a:hover { color: var(--color-accent); }
 }
 .aero-about-page-portrait img {
   object-fit: cover;
+  object-position: center center;
+  transform: scale(1.15);
 }
 .aero-about-page-founder h2 {
   font-size: clamp(32px, 3.6vw, 46px);

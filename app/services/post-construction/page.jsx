@@ -4,9 +4,10 @@ import { SERVICE_PAGES } from "@/lib/data";
 const page = SERVICE_PAGES["post-construction"];
 
 export const metadata = {
-  title: "Post-Construction Cleaning Guelph | Builders' Clean",
+  alternates: { canonical: "/services/post-construction" },
+  title: "Post-Construction Cleaning Guelph | Aero Cleaning",
   description:
-    "Post-construction and builders' cleans across Guelph, Kitchener, Waterloo and Cambridge. Rough, intermediate and final phases, ready for handover.",
+    "We clear dust, debris, and residue after a build or renovation, leaving the space spotless and move-in ready across Guelph, Kitchener, Waterloo and Cambridge.",
 };
 
 export default function PostConstructionPage() {

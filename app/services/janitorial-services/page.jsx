@@ -4,6 +4,7 @@ import { SERVICE_PAGES } from "@/lib/data";
 const page = SERVICE_PAGES["janitorial-services"];
 
 export const metadata = {
+  alternates: { canonical: "/services/janitorial-services" },
   title: "Janitorial Services Guelph & Tri-City | Aero Cleaning",
   description:
     "Recurring janitorial contracts and day porter service across Guelph, Kitchener, Waterloo and Cambridge. Whole-building coverage, frequency to suit.",

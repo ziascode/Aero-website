@@ -6,6 +6,7 @@ import { ABOUT_CREDENTIALS, ABOUT_GIVEBACK } from "@/lib/data";
 import { EMAIL, EMAIL_MAILTO, PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 
 export const metadata = {
+  alternates: { canonical: "/about" },
   title: "About Aero Cleaning | Women-Owned, Guelph, Since 2015",
   description:
     "Aero Cleaning Services Ltd. has served Guelph and the surrounding area since 2015, with office, post-construction, and janitorial cleaning, and a share of every contract given locally.",
@@ -63,7 +64,7 @@ export default function AboutPage() {
             Roxana founded Aero Cleaning Services Ltd. out of her home in Guelph in 2015. Fueled by a vision to transform the commercial cleaning industry, she has built a company known for reliable, professional service and immaculate standards. Driven by the support she received upon moving to Canada in 1997 as a refugee, Roxana is passionate about giving back to her community.
           </p>
           <LiquidButton
-            href="https://www.linkedin.com/in/roxana-di-caro-zamfir-015465181/"
+            href="https://ca.linkedin.com/in/roxana-di-caro-zamfir-015465181"
             variant="light"
             icon={<ArrowRight />}
             target="_blank"

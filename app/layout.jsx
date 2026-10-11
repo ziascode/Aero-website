@@ -24,6 +24,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://aerocleaning.ca"),
   title: "Commercial Cleaning Guelph | Aero Cleaning Services",
   description:
     "Office, janitorial and post-construction cleaning across Guelph, Kitchener, Waterloo and Cambridge. Women-owned and WBE certified, cleaning since 2015.",
