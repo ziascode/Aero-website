@@ -54,7 +54,7 @@ export function ReviewCard({ r, glass, compact, onDark }) {
             justifyContent: "center",
             fontFamily: "var(--font-heading)",
             fontWeight: 700,
-            fontSize: compact ? "15px" : "18px",
+            fontSize: compact ? "17px" : "20px",
             flex: "0 0 auto",
           }}
         >
@@ -63,7 +63,7 @@ export function ReviewCard({ r, glass, compact, onDark }) {
         <div style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
           <span
             style={{
-              fontSize: compact ? "14px" : "16px",
+              fontSize: compact ? "16px" : "18px",
               fontWeight: 700,
               color: darkGlass ? "#ffffff" : "var(--color-text)",
             }}
@@ -72,7 +72,7 @@ export function ReviewCard({ r, glass, compact, onDark }) {
           </span>
           <span
             style={{
-              fontSize: compact ? "12px" : "14px",
+              fontSize: compact ? "14px" : "16px",
               color: darkGlass
                 ? "color-mix(in srgb, #d7edfe 70%, transparent)"
                 : "color-mix(in srgb, var(--color-text) 55%, transparent)",
@@ -96,7 +96,7 @@ export function ReviewCard({ r, glass, compact, onDark }) {
       <p
         className={compact ? "aero-review-card-text aero-review-card-text--clamp" : "aero-review-card-text"}
         style={{
-          fontSize: compact ? "14px" : "16px",
+          fontSize: compact ? "16px" : "18px",
           lineHeight: compact ? "20px" : "24px",
           margin: 0,
           color: darkGlass ? "color-mix(in srgb, #ffffff 88%, #d7edfe)" : "var(--color-text)",

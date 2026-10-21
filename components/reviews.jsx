@@ -35,21 +35,24 @@ function MarqueeSet({ reviews, copy, hidden = false }) {
   );
 }
 
+function MarqueeTrack({ reviews, direction = "normal" }) {
+  const className = direction === "reverse" ? "aero-marquee-rev" : "aero-marquee-slow";
+  // Two identical sets; CSS translates by -50% so the loop is seamless and infinite.
+  return (
+    <div style={maskStyle}>
+      <div className={className}>
+        <MarqueeSet reviews={reviews} copy="a" />
+        <MarqueeSet reviews={reviews} copy="b" hidden />
+      </div>
+    </div>
+  );
+}
+
 function ReviewBands({ row1, row2 }) {
   return (
     <div className="aero-reviews-bands-rows">
-      <div style={maskStyle}>
-        <div className="aero-marquee-slow">
-          <MarqueeSet reviews={row1} copy="a" />
-          <MarqueeSet reviews={row1} copy="b" hidden />
-        </div>
-      </div>
-      <div style={maskStyle}>
-        <div className="aero-marquee-rev">
-          <MarqueeSet reviews={row2} copy="a" />
-          <MarqueeSet reviews={row2} copy="b" hidden />
-        </div>
-      </div>
+      <MarqueeTrack reviews={row1} />
+      <MarqueeTrack reviews={row2} direction="reverse" />
     </div>
   );
 }
@@ -86,14 +89,14 @@ export function Reviews({ ctaHref = "/book", bandsOnly = false } = {}) {
       className={isHome ? "aero-reviews-home aero-reviews-section" : "aero-reviews-section"}
       style={{ position: "relative", overflow: "hidden", backgroundColor: "#FFFFFF" }}
     >
-      <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "var(--color-accent-2-900)", marginBottom: "12px" }}>Google Reviews</span>
+      <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "17px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "var(--color-accent-2-900)", marginBottom: "12px" }}>Google Reviews</span>
       <hr style={{ height: "1px", border: 0, margin: "0 0 28px", background: "rgba(255,255,255,0.6)" }} />
       <div className="aero-reviews-grid">
         <div style={{ borderRadius: "25px", padding: "10px 0", backgroundColor: "#FFFFFF" }}>
           <h2 style={{ ...sectionHeading, margin: 0, maxWidth: "22ch", color: "var(--color-text)" }}>
-            Rated 5 stars by your local businesses
+            Rated 5 stars by local businesses
           </h2>
-          <p className="aero-reviews-dek" style={{ maxWidth: "46ch", margin: "20px 0 0", fontSize: "16px", lineHeight: "24px", color: "color-mix(in srgb, var(--color-text) 78%, transparent)" }}>
+          <p className="aero-reviews-dek" style={{ maxWidth: "46ch", margin: "20px 0 0", fontSize: "19px", lineHeight: "24px", color: "color-mix(in srgb, var(--color-text) 78%, transparent)" }}>
             Every review below comes from a live Google listing — offices, depots and production sites across the region, scored after the first quarter of service.
           </p>
           <div className="aero-reviews-actions">

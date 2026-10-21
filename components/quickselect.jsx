@@ -87,6 +87,16 @@ function CarpetIcon() {
   );
 }
 
+function WarehouseIcon() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <path d="M8 28 32 12l24 16v28H8V28Z" fill="currentColor" fillOpacity="0.14" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
+      <path d="M20 56V36h24v20" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
+      <path d="M14 28h36" stroke="currentColor" strokeWidth="1.5" opacity="0.45" />
+    </svg>
+  );
+}
+
 const ICONS = {
   office: OfficeIcon,
   janitorial: JanitorialIcon,
@@ -94,6 +104,7 @@ const ICONS = {
   window: WindowIcon,
   biohazard: BiohazardIcon,
   carpet: CarpetIcon,
+  warehouse: WarehouseIcon,
 };
 
 export function Quickselect() {

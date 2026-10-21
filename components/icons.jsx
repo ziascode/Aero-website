@@ -107,3 +107,29 @@ export function ChevronDown() {
     </svg>
   );
 }
+
+export function FacebookIcon({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M14 8h2.5V5.5H14c-1.9 0-3.5 1.3-3.5 3.5V11H8v3h2.5v6H14v-6h2.3l.5-3H14V9c0-.6.4-1 1-1Z" />
+    </svg>
+  );
+}
+
+export function InstagramIcon({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" focusable="false">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function LinkedInIcon({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M6.5 9.5H4V20h2.5V9.5ZM5.25 4A1.75 1.75 0 1 0 5.25 7.5 1.75 1.75 0 0 0 5.25 4ZM20 20h-2.5v-5.4c0-1.7-.7-2.3-1.7-2.3-1.1 0-1.9.8-1.9 2.4V20H11.4V9.5h2.4v1.4c.5-.9 1.6-1.7 3.3-1.7 2.3 0 3 1.5 3 4.3V20Z" />
+    </svg>
+  );
+}

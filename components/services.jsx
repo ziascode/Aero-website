@@ -160,12 +160,12 @@ export function Services() {
     <section id="services" ref={rootRef} style={{ padding: "88px var(--aero-gutter) 24px", backgroundColor: "#FFFFFF" }}>
      
       <hr style={{ height: "1px", border: 0, margin: "0 0 28px", background: "var(--color-divider)" }} />
-      <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "var(--color-accent-2-900)", marginBottom: "12px" }}>What we do</span>
+      <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "17px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "var(--color-accent-2-900)", marginBottom: "12px" }}>What we do</span>
       <h2 className="aero-section-heading" style={{ ...sectionHeading, margin: 0, maxWidth: "26ch" }}>
         Services
       </h2>
-      <p style={{ maxWidth: "46ch", margin: "16px 0 0", fontSize: "16px", lineHeight: "24px" }}>
-        Six core services, plus whatever else the building needs.
+      <p style={{ maxWidth: "46ch", margin: "16px 0 0", fontSize: "19px", lineHeight: "24px" }}>
+        Seven core services, plus whatever else the building needs.
       </p>
 
       {!isMobile && (
@@ -225,7 +225,7 @@ export function Services() {
                   onClick={() => onMobileToggle(i, open)}
                   style={{ position: "relative", display: "flex", alignItems: "center", width: "100%", minHeight: "112px", padding: "28px 56px", background: "transparent", border: 0, cursor: "pointer" }}
                 >
-                    <h3 style={{ ...headingBase, fontSize: "24px", lineHeight: "30px", margin: 0, width: "100%", textAlign: "center", color: "var(--color-text)" }}>{s.title}</h3>
+                    <h3 style={{ ...headingBase, fontSize: "30px", lineHeight: "30px", margin: 0, width: "100%", textAlign: "center", color: "var(--color-text)" }}>{s.title}</h3>
                   <span
                     style={{ position: "absolute", right: "20px", top: "50%", transform: `translateY(-50%) rotate(${open ? 180 : 0}deg)`, color: "var(--color-accent-700)", transition: "transform 300ms ease", display: "flex" }}
                   >
@@ -235,7 +235,7 @@ export function Services() {
                 <div className={`aero-service-panel${open ? " is-open" : ""}`}>
                   <div className="aero-service-panel-inner">
                     <div style={{ padding: "0 20px 22px" }}>
-                      <p style={{ fontSize: "16px", lineHeight: "24px", margin: "0 0 16px", color: "#000000", fontWeight: 400 }}>{s.desc}</p>
+                      <p style={{ fontSize: "19px", lineHeight: "24px", margin: "0 0 16px", color: "#000000", fontWeight: 400 }}>{s.desc}</p>
                       <ul className="aero-service-bullets">
                         {s.tags.map((t) => (
                           <li key={t} className="tag tag-outline" style={{ ...tagStyle, background: "#FFFFFF" }}>{t}</li>

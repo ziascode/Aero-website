@@ -27,7 +27,7 @@ export function Wbe() {
             Women-owned, certified by WBE Canada
           </h2>
           <p>
-            Aero is certified by Women Business Enterprise Canada. If your organisation reports on supplier diversity, spend with Aero counts toward it, and the certification paperwork is ready to attach to an RFP without anyone chasing it.
+            Aero is certified by Women Business Enterprise Canada. If your organization reports on supplier diversity, spend with Aero counts toward it, and the certification paperwork is ready to attach to an RFP without anyone chasing it.
           </p>
           <ul className="aero-wbe-points">
             {POINTS.map((point) => (

@@ -31,7 +31,7 @@ export function Hero() {
             alignItems: "center",
             gap: "10px",
             marginBottom: "2px",
-            fontSize: "12px",
+            fontSize: "15px",
             letterSpacing: "0.1em",
             textTransform: "uppercase",
             color: "color-mix(in srgb, var(--color-text) 65%, transparent)",
@@ -44,7 +44,7 @@ export function Hero() {
           5.0 · Rated on Google
         </div>
 
-        <h1 style={{ ...headingBase, fontSize: "clamp(46px, 6.4vw, 90px)", lineHeight: 1.04, margin: "0 auto", maxWidth: "20ch" }}>
+        <h1 style={{ ...headingBase, fontSize: "clamp(48px, 6.4vw, 96px)", lineHeight: 1.04, margin: "0 auto", maxWidth: "20ch" }}>
           <span className="aero-hero-title" style={{ display: "inline", color: "#1D1F20", fontWeight: 600 }}>Commercial &amp; Office</span>
           <span className="aero-hero-title" style={{ display: "block" }}>Cleaning Services</span>
         </h1>
@@ -68,7 +68,7 @@ export function Hero() {
               style={{
                 fontFamily: "var(--font-heading)",
                 fontWeight: 600,
-                fontSize: "13px",
+                fontSize: "16px",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
                 padding: "9px 16px",
@@ -127,7 +127,7 @@ export function Hero() {
               padding: "7px 14px",
               fontFamily: "var(--font-heading)",
               fontWeight: 600,
-              fontSize: "12px",
+              fontSize: "15px",
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               display: "inline-flex",

@@ -7,7 +7,7 @@ export function LogoMarquee() {
   return (
     <section data-sticky-reveal style={{ backgroundColor: "#FFFFFF", padding: "64px 0 40px", overflow: "hidden" }}>
       <div style={{ padding: "0 var(--aero-gutter)", marginBottom: "18px", textAlign: "center" }}>
-        <span style={{ fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "color-mix(in srgb, var(--color-text) 55%, transparent)" }}>
+        <span style={{ fontFamily: "var(--font-heading)", fontSize: "17px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "color-mix(in srgb, var(--color-text) 55%, transparent)" }}>
           Trusted by facilities teams at
         </span>
       </div>

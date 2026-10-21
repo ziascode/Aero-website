@@ -1,16 +1,17 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 import { SERVICE_PAGES } from "@/lib/data";
+import { pageMetadata } from "@/lib/seo";
 
 const page = SERVICE_PAGES["window-cleaning"];
 
-export const metadata = {
-  alternates: { canonical: "/services/window-cleaning" },
-  title: "Commercial Window Cleaning Guelph | Aero Cleaning",
+export const metadata = pageMetadata({
+  path: "/services/window-cleaning",
+  title: 'Window Cleaning Guelph | Aero Cleaning',
   description:
-    "Interior and exterior commercial window cleaning across Guelph, Kitchener, Waterloo and Cambridge. Storefronts, partitions and high-level glass.",
-};
+    'Interior and exterior commercial window cleaning across Guelph, Kitchener, Waterloo and Cambridge. Storefronts, partitions and high-level glass.',
+});
 
-export default function WindowCleaningPage() {
+export default function Page() {
   return (
     <ServiceLandingPage
       page={page}

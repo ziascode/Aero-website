@@ -4,9 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FOOTER_LINK_GROUPS } from "@/lib/data";
-import { EMAIL, EMAIL_MAILTO, LOCATION, PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
+import { EMAIL, EMAIL_MAILTO, LOCATION, PHONE_DISPLAY, PHONE_TEL, SOCIAL_LINKS } from "@/lib/contact";
 import { onHashLinkClick } from "@/lib/hash-nav";
-import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import { FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+
+const SOCIAL_ICONS = {
+  Facebook: FacebookIcon,
+  Instagram: InstagramIcon,
+  LinkedIn: LinkedInIcon,
+};
 
 export function SiteFooter() {
   const pathname = usePathname();
@@ -31,7 +37,7 @@ export function SiteFooter() {
               />
             </span>
           </Link>
-          <p style={{ fontSize: "16px", lineHeight: "24px", maxWidth: "32ch", margin: 0, color: "color-mix(in srgb, #FFFFFF 68%, transparent)" }}>
+          <p style={{ fontSize: "19px", lineHeight: "24px", maxWidth: "32ch", margin: 0, color: "color-mix(in srgb, #FFFFFF 68%, transparent)" }}>
             Commercial cleaning, janitorial and window care for offices, plants and warehouses.
           </p>
           <Link
@@ -56,8 +62,8 @@ export function SiteFooter() {
 
         {FOOTER_LINK_GROUPS.map(([heading, links]) => (
           <div key={heading}>
-            <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "color-mix(in srgb, #FFFFFF 55%, transparent)", marginBottom: "18px" }}>{heading}</span>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "16px" }}>
+            <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "17px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "color-mix(in srgb, #FFFFFF 55%, transparent)", marginBottom: "18px" }}>{heading}</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "19px" }}>
               {links.map(([label, href]) => (
                 <Link
                   key={label}
@@ -74,8 +80,8 @@ export function SiteFooter() {
         ))}
 
         <div>
-          <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "14px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "color-mix(in srgb, #FFFFFF 55%, transparent)", marginBottom: "18px" }}>Get in touch</span>
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "16px", color: "color-mix(in srgb, #FFFFFF 85%, transparent)" }}>
+          <span style={{ display: "block", fontFamily: "var(--font-heading)", fontSize: "17px", letterSpacing: "0.2px", textTransform: "uppercase", fontWeight: 600, color: "color-mix(in srgb, #FFFFFF 55%, transparent)", marginBottom: "18px" }}>Get in touch</span>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "19px", color: "color-mix(in srgb, #FFFFFF 85%, transparent)" }}>
             <a href={PHONE_TEL} className="aero-footer-link" style={{ display: "flex", alignItems: "center", gap: "10px", color: "inherit" }}>
               <PhoneIcon />
               {PHONE_DISPLAY}
@@ -88,13 +94,29 @@ export function SiteFooter() {
               <PinIcon />
               {LOCATION}
             </span>
+            <div className="aero-footer-social" aria-label="Social media">
+              {SOCIAL_LINKS.map((item) => {
+                const Icon = SOCIAL_ICONS[item.label];
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="aero-footer-social-link"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={item.label}
+                  >
+                    {Icon ? <Icon /> : item.label}
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
       <div className="aero-footer-legal">
         <span style={{ marginRight: "auto" }}>© 2026 Aero Cleaning Services Ltd. All rights reserved.</span>
-        <span>Insured &amp; DBS vetted</span>
-        <span>ISO 9001 &amp; 14001</span>
+        <span>WSIB covered · Fully insured</span>
       </div>
     </footer>
   );

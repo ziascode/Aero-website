@@ -4,13 +4,14 @@ import { LiquidButton } from "@/components/liquid-button";
 import { ArrowRight, PhoneIcon } from "@/components/icons";
 import { ABOUT_CREDENTIALS, ABOUT_GIVEBACK } from "@/lib/data";
 import { EMAIL, EMAIL_MAILTO, PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
+import { credentialLogoAlt, pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  alternates: { canonical: "/about" },
+export const metadata = pageMetadata({
+  path: "/about",
   title: "About Aero Cleaning | Women-Owned, Guelph, Since 2015",
   description:
     "Aero Cleaning Services Ltd. has served Guelph and the surrounding area since 2015, with office, post-construction, and janitorial cleaning, and a share of every contract given locally.",
-};
+});
 
 export default function AboutPage() {
   return (
@@ -90,7 +91,7 @@ export default function AboutPage() {
                 <Image
                   className={[cred.rounded ? "is-rounded" : "", cred.title === "BBB" ? "is-mark" : ""].filter(Boolean).join(" ") || undefined}
                   src={cred.logo}
-                  alt=""
+                  alt={credentialLogoAlt(cred.title)}
                   width={cred.rounded ? 72 : 120}
                   height={72}
                   unoptimized={cred.logo.endsWith(".svg")}

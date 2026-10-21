@@ -12,4 +12,12 @@
 # Do not add a SPA /* → /index.html redirect — it breaks SSR routes.
 
 # Forms: static detection stub at public/__forms.html (name: service-lead).
-# After deploy: Site → Forms → enable notifications to info@aerocleaning.ca
+# Z-09: After deploy → Site → Forms → Notifications → email to info@aerocleaning.ca
+# Send one test submission from each service page and /book.
+
+# Z-22: Keep staging (.netlify.app) out of the index until cutover to aerocleaning.ca.
+# REMOVE this header block when the primary domain goes live.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

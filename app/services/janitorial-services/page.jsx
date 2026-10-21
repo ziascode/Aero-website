@@ -1,16 +1,17 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 import { SERVICE_PAGES } from "@/lib/data";
+import { pageMetadata } from "@/lib/seo";
 
 const page = SERVICE_PAGES["janitorial-services"];
 
-export const metadata = {
-  alternates: { canonical: "/services/janitorial-services" },
-  title: "Janitorial Services Guelph & Tri-City | Aero Cleaning",
+export const metadata = pageMetadata({
+  path: "/services/janitorial-services",
+  title: 'Janitorial Services Guelph | Aero Cleaning',
   description:
-    "Recurring janitorial contracts and day porter service across Guelph, Kitchener, Waterloo and Cambridge. Whole-building coverage, frequency to suit.",
-};
+    'Recurring janitorial contracts and day porter service across Guelph, Kitchener, Waterloo and Cambridge. Whole-building coverage, frequency to suit.',
+});
 
-export default function JanitorialServicesPage() {
+export default function Page() {
   return (
     <ServiceLandingPage
       page={page}

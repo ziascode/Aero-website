@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ABOUT_CREDENTIALS, ABOUT_GIVEBACK } from "@/lib/data";
+import { credentialLogoAlt } from "@/lib/seo";
 
 export function About({ hideMoreLink = false } = {}) {
   return (
@@ -31,7 +32,7 @@ export function About({ hideMoreLink = false } = {}) {
                   {item.detail}
                   <Image
                     src={item.logo}
-                    alt=""
+                    alt={credentialLogoAlt(item.title)}
                     width={item.rounded ? 56 : 88}
                     height={56}
                     unoptimized={item.logo.endsWith(".svg")}

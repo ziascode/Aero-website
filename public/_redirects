@@ -1,0 +1,9 @@
+# Legacy WordPress paths → current routes (Z-05). One hop each.
+/services/            /#services                    301
+/contact-us/          /book                         301
+/contact              /book                         301
+/contact/             /book                         301
+/about-office-cleaning/ /about                      301
+/window-cleaning/     /services/window-cleaning     301
+/sample-page/         /                             301
+/aeromaids/           /                             301

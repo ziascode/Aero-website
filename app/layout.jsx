@@ -25,11 +25,36 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+const siteTitle = "Commercial Cleaning Guelph | Aero Cleaning Services";
+const siteDescription =
+  "Office, janitorial and post-construction cleaning across Guelph, Kitchener, Waterloo and Cambridge. Women-owned and WBE certified, cleaning since 2015.";
+
 export const metadata = {
   metadataBase: new URL("https://aerocleaning.ca"),
-  title: "Commercial Cleaning Guelph | Aero Cleaning Services",
-  description:
-    "Office, janitorial and post-construction cleaning across Guelph, Kitchener, Waterloo and Cambridge. Women-owned and WBE certified, cleaning since 2015.",
+  title: siteTitle,
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    siteName: "Aero Cleaning Services",
+    title: siteTitle,
+    description: siteDescription,
+    url: "https://aerocleaning.ca",
+    images: [
+      {
+        url: "/office-hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Commercial office after a clean by Aero Cleaning Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/office-hero.jpg"],
+  },
 };
 
 export const viewport = {

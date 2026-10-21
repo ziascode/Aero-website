@@ -3,13 +3,14 @@ import { BookForm } from "@/components/book-form";
 import { BookMap } from "@/components/book-map";
 import { ClockIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import { EMAIL, EMAIL_MAILTO, LOCATION, PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  alternates: { canonical: "/book" },
+export const metadata = pageMetadata({
+  path: "/book",
   title: "Book your cleaning service — Aero Cleaning Services",
   description:
-    "Request a free cleaning quote for office, post-construction, or janitorial service in Guelph. Aero’s offices are open 24 hours a day.",
-};
+    "Book a free site walkthrough for office, janitorial, post-construction or specialty cleaning in Guelph and the surrounding area.",
+});
 
 export default function BookPage() {
   return (

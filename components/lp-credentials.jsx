@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ABOUT_CREDENTIALS } from "@/lib/data";
+import { credentialLogoAlt } from "@/lib/seo";
 
 export function LpCredentials() {
   return (
@@ -9,7 +10,7 @@ export function LpCredentials() {
           <li key={item.title} className="aero-lp-credentials-item">
             <Image
               src={item.logo}
-              alt=""
+              alt={credentialLogoAlt(item.title)}
               width={item.rounded ? 48 : 72}
               height={48}
               unoptimized={item.logo.endsWith(".svg")}
